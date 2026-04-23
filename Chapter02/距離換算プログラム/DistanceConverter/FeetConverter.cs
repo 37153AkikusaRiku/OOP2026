@@ -6,28 +6,19 @@ using System.Threading.Tasks;
 
 namespace DistanceConverter
 {
-    internal class FeetConverter
+    internal static class FeetConverter
     {
-
-
-        //メートルからフィートを求める
-
-        public double FromMeter(int meter)
+        public static double FromMeter(int meter)//メートルからフィートを求める
         {
-
             //feet*0.3048
-
             return meter / 0.3048;
-
         }
-        public double ToMeter(int feet)//フィートからメートルを求める
 
+
+        public static double ToMeter(int feet)//フィートからメートルを求める
         {
-
             //feet*0.3048
-
             return feet * 0.3048;
-
         }
     }
 }

@@ -4,71 +4,44 @@ using System.Diagnostics.Metrics;
 using System.Runtime.CompilerServices;
 
 namespace DistanceConverter
-
 {
-
     internal class Program
-
     {
-
         public static object PrintMeterToFeet { get; private set; }
-
         static void Main(string[] args)
         {
-            FeetConverter converter = new FeetConverter();
-            
-
-
             if (Error(args) != false)
             {
                 if (args.Length >= 1 && args[0] == "-tom")
-
                 {
-
                     PrintFeetToMeterList(int.Parse(args[1]), int.Parse(args[2]));
-
                 }//メートルへの変換
-
                 else if (args.Length >= 1 && args[0] == "-tof")
-
                 {
-
                     PrintMeterToFeetList(int.Parse(args[1]), int.Parse(args[2]));//メートルからフィートへの変換
-
-
                 }
             }
         }
 
 
         private static void PrintMeterToFeetList(int start, int stop)
-
         {
-            FeetConverter converter = new FeetConverter();
+            //FeetConverter converter = new FeetConverter();
             for (int meter = start; meter <= stop; meter++)
-
             {
-
-                double feet = converter.FromMeter(meter);
-
+                double feet = FeetConverter.FromMeter(meter);
                 Console.WriteLine($"{meter}m={feet:0.0000}ft");
-
             }
-
         }
 
+
         private static void PrintFeetToMeterList(int start, int stop)
-
         {
-            FeetConverter converter = new FeetConverter();
+            //FeetConverter converter = new FeetConverter();
             for (int feet = start; feet <= stop; feet++)
-
             {
-
-                double meter = converter.ToMeter(feet);
-
+                double meter = FeetConverter.ToMeter(feet);
                 Console.WriteLine($"{feet}ft={meter:0.0000}m");
-
             }
 
         }
