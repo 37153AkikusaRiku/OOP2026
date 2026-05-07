@@ -3,6 +3,10 @@
     "DistanceConverter": {
       "commandName": "Project",
       "commandLineArgs": "-foo 1 1 1"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
     }
   }
 }
