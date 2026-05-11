@@ -1,7 +1,7 @@
 ﻿
 namespace Exercise01 {
-    internal class Program {
-        static void Main(string[] args) {
+    public class Program {
+        public static void Main(string[] args) {
             Console.WriteLine("Hello, World!");
 
             var songs = new Song[] {
@@ -18,7 +18,10 @@ namespace Exercise01 {
         }
 
         public static void PrintSongs(Song[] songs) {
-            throw new NotImplementedException();
+            foreach(var Song in songs) {
+                Song[]=
+                Console.WriteLine($"{Song.Title}{Song.ArtistName}{Song.Lenght}");
+            }
         }
     }
 }

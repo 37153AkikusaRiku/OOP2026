@@ -14,23 +14,10 @@ namespace Exercise01 {
         //なにこれ
         public int Lenght { get; set; }
         //コンストラクタ
-        public Song(string　Title,string ArtistName,int Lenght) {
-            this.Title = Title;
-            this.ArtistName = ArtistName;
-            this.Lenght = Lenght;
-        }
-        //店舗別売上を求める
-        public IDictionary<string, int> GetPerStoreSales() {
-            var dict = new SortedDictionary<string, int>();
-            foreach (var sale in _sales) {
-                if (dict.ContainsKey(sale.ShopName))
-                    //すでに店舗名が辞書のキーに登録されている場合
-                    dict[sale.ShopName] += sale.Amount;//売上を足しこみ
-                else
-                    //店舗名の登録がまだない場合
-                    dict[sale.ShopName] += sale.Amount;//新規に売上を登録
-            }
-            return dict;
+        public Song(string　title,string artistName,int lenght) {
+            Title = title;
+            ArtistName = artistName;
+            Lenght = lenght;
         }
 
     }
