@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace SalesCalculator {
     public class SalesCounter {
-        private readonly List<Sale>_sales;
+        private readonly IEnumerable<Sale>_sales;
 
         //コンストラクタ
         public SalesCounter(string filePath) {
             _sales = ReadSales(filePath);
         }
 
-        //店舗別売上を求める
-        public Dictionary<string,int> GetPerStoreSales() {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+        public Dictionary<string, int> GetDict() {
+            return new Dictionary<string, int>();
+        }
 
-            foreach(var sale in _sales) {
+        //店舗別売上を求める
+        public IDictionary<string,int> GetPerStoreSales() {
+            var dict = new SortedDictionary<string, int>();
+            foreach (var sale in _sales) {
                 if (dict.ContainsKey(sale.ShopName))
                     //すでに店舗名が辞書のキーに登録されている場合
                     dict[sale.ShopName] += sale.Amount;//売上を足しこみ
@@ -28,12 +31,12 @@ namespace SalesCalculator {
             return dict;
         }
 
-        public List<Sale> ReadSales(string filePath) {
-            List<Sale> sales = new List<Sale>();//リスト
-            string[] lines = File.ReadAllLines(filePath);
-            foreach (string line in lines) {
-                string[] items = line.Split(',');
-                Sale sale = new Sale {
+        public IEnumerable<Sale> ReadSales(string filePath) {
+            var sales = new List<Sale>();//リスト
+            var lines = File.ReadAllLines(filePath);
+            foreach (var line in lines) {
+                var items = line.Split(',');
+                var sale = new Sale {
                     ShopName = items[0],
                     PeoductCategory = items[1],
                     Amount = int.Parse(items[2]),
