@@ -17,7 +17,7 @@ namespace Section01 {
                 "Hong Kong",
             };
 
-            var exists = cities.Exists(s =>6<= s.Length && s.Contains('o') && s.EndsWith('n'));
+            var exists = cities.Exists(s =>6<= s.Length || s.Contains('o') && s.EndsWith('n'));
 
             Console.WriteLine(exists);
             
@@ -27,7 +27,7 @@ namespace Section01 {
 
 
 
-            //var exists = cities.Exists(s => s[0] == 'T');//ある文字があるかどうか
+            //var exists = cities.Exists(s => s[0] == 'T');//ある文字があるかどうか正か不か
             //var count = cities.Count(c => c[0] == 'T');//文字を数える
             //var find = cities.Find(c => c[0] == 'T');//特定の文字を探す
             //var findindex = cities.FindIndex(c => c[0] == 'T');
