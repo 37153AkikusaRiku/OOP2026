@@ -1,30 +1,46 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Contracts;
 
 namespace Section01 {
     internal class Program {
 
 
         static void Main(string[] args) {
-            var numbers = new[] { 5, 3, 9, 6, 7, 5, 8, 1, 0, 5, 10, 4 };
+            var cities = new List<string> {
+                "Tokyo",
+                "New Delhi",
+                "Bangkok",
+                "London",
+                "Paris",
+                "Berlin",
+                "Canberra",
+                "Hong Kong",
+            };
 
-            //var count = Count(numbers,n => n % 2 == 0);//匿名メソッド
-            var count = Count(numbers, n => n % 4 == 0 || n % 5 == 0);
+            var exists = cities.Exists(s =>6<= s.Length && s.Contains('o') && s.EndsWith('n'));
 
-            Console.WriteLine(count);
+            Console.WriteLine(exists);
             
-        }
 
-        static int Count(int[]numbers,Predicate<double> judge) {//bool型の引数
-            
-            var count = 0;
-            foreach (var n in numbers) {//trueを数える
-                if (judge(n) == true) {
-                    count++;
-                }
-            }
-            return count;
-        }
 
+
+
+
+
+            //var exists = cities.Exists(s => s[0] == 'T');//ある文字があるかどうか
+            //var count = cities.Count(c => c[0] == 'T');//文字を数える
+            //var find = cities.Find(c => c[0] == 'T');//特定の文字を探す
+            //var findindex = cities.FindIndex(c => c[0] == 'T');
+            //var findall = cities.FindAll(c => c[0] == 'T');
+            //findall.ForEach(s => Console.WriteLine(s));
+
+            //foreach (var item in findall) {
+            //    Console.WriteLine(item);
+
+            //}
+            //Console.WriteLine(exists);
+
+        }
 
     }
 }
