@@ -1,4 +1,6 @@
 ﻿
+using System.Linq;
+
 namespace Exercise01 {
     internal class Program {
         static void Main(string[] args) {
@@ -34,18 +36,25 @@ namespace Exercise01 {
         private static void Exercise2(List<int> numbers) {
 
             foreach (var item in numbers) {
-
-
-
+                Console.WriteLine(item/2.0);
             }
 
         }
 
         private static void Exercise3(List<int> numbers) {
+            var where = numbers.Where((n => n >= 50)).ToList();
+            foreach (var item in where) {
+                Console.WriteLine(item);
+            }
 
         }
 
         private static void Exercise4(List<int> numbers) {
+            var select = numbers.Select((n => n * 2));
+            foreach (var item in select) {
+                Console.WriteLine(item);
+            }
+
 
         }
     }

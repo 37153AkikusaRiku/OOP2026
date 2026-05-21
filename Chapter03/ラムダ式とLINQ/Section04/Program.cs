@@ -14,7 +14,7 @@ namespace Section04 {
                 "Hong Kong",
             };
 
-            var query = cities.Where(s => s.Length <= 5).ToList();//query遅延実行
+            var query = cities.Where(s => s.Length <= 5).ToList();//Where遅延実行
             foreach (var item in query) {
                 Console.WriteLine(item);
             }
