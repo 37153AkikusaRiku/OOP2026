@@ -25,11 +25,14 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<string> cities) {
-            var name = Console.ReadLine();
-            var findindex = cities.FindIndex(s => s == name);
-            Console.WriteLine(findindex);
-
-	        
+            while (true) {
+                var name = Console.ReadLine();
+                var findindex = cities.FindIndex(s => s == name);
+                Console.WriteLine(findindex);
+                if (name=="") {
+                    break;
+                }
+            }
         }
 
         private static void Exercise2_2(List<string> cities) {
