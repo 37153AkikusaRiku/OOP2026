@@ -50,9 +50,12 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<string> cities) {
-            var where = cities.Where(c => c.Contains('B'));
-            foreach (var item in where) {
+            var where = cities.Where(s => s.StartsWith('B')).Select(s => new { s, s.Length });
 
+            //var where = cities.Where(c => c.Contains('B'));
+            
+            foreach (var item in where) {
+                Console.Write(item+",");
                 Console.WriteLine(item.Length);
 
             }
