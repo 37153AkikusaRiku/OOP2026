@@ -51,7 +51,7 @@
             Console.WriteLine("入れ替え前");
             Console.WriteLine("a=" + a + "b=" + b);
 
-            (b, a, c,int d) = (a, b, 999,55);
+            (b, a, c, int d) = (a, b, 999, 55);
 
             //int box = a;
             //a = b;
@@ -59,7 +59,7 @@
 
 
             Console.WriteLine("入れ替え後");
-            Console.WriteLine("a=" + a + "b=" + b+"c="+c+"d="+d);
+            Console.WriteLine("a=" + a + "b=" + b + "c=" + c + "d=" + d);
 
             #endregion
 
