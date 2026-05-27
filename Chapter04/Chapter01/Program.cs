@@ -78,7 +78,9 @@ namespace Chapter01 {
         }
 
         private static void Exercise3(List<string> langs) {
+            var find = langs.Find(a => 10 >= a.Length);
 
+            Console.WriteLine(find);
 
 
         }
