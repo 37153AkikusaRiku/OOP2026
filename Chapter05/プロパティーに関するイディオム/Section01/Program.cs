@@ -58,10 +58,9 @@ namespace Section01 {
 
         public string Name => FamilyName + " " + GivenName;
 
-        public PasswordPolicy(string familyName, string givenName) {
-            FamilyName = familyName;
-            GivenName = givenName;
-        }
+        
+
+
 
         //public void abc() {
         //    GivenName = "ffffff";
