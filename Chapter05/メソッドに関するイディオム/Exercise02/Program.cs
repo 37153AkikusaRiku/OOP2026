@@ -18,7 +18,10 @@ namespace Exercise02 {
 
             Console.WriteLine("5.2.2");
             Exercise2(ymCollection);
-            
+
+
+            Console.WriteLine("5.2.3");
+            Exercise3(ymCollection);
 
 
             Console.WriteLine("5.2.4");
@@ -29,6 +32,8 @@ namespace Exercise02 {
             Console.WriteLine("5.2.5");
             Exercise5(ymCollection);
         }
+
+        
 
         private static void Exercise2(YearMonth[] ymCollection) {
 
@@ -50,7 +55,7 @@ namespace Exercise02 {
 
 
 
-        private static void Exercise4(YearMonth[] ymCollection) {
+        private static void Exercise3(YearMonth[] ymCollection) {
 
             Console.WriteLine( FindFast(ymCollection));
 
@@ -58,12 +63,21 @@ namespace Exercise02 {
 
         }
 
-        private static void Exercise5(YearMonth[] ymCollection) {
+        private static void Exercise4(YearMonth[] ymCollection) {
             var ym = FindFast(ymCollection);
-            Console.WriteLine(ym);
 
             if (ym==null) {
                 Console.WriteLine("ありません");
+            } else { Console.WriteLine(ym); }
+
+        }
+
+
+        private static void Exercise5(YearMonth[] ymCollection) {
+
+            foreach (var item in ymCollection) {
+                Console.WriteLine( item.addOneMonth(item.Year, item.Month));
+
             }
 
         }
