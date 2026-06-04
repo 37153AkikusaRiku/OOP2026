@@ -8,7 +8,7 @@
 
         }
 
-        public static void DoSomeshing(int num,string messeage="エラーじゃない",int retryCount=6) {
+        public static void DoSomeshing(int num, string messeage = "エラーじゃない", int retryCount = 6) {
             //仮のコード 
             Console.WriteLine($"{num}{messeage}{retryCount}");
         }

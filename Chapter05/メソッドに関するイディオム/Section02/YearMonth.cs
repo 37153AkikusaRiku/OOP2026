@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Section02 {
-    internal class YearMonth {
+    public class YearMonth {
 
         public int Year { get; private set; }
         public int Month { get; private set; }
-        //public int Is21Century { get; private init; }
+        
 
-        public bool Is21Century => 2001 <=2100;
+        public bool Is21Century => 2001 <= Year && Year <= 2100;//ラムダ式
             
         
 
@@ -22,6 +22,8 @@ namespace Section02 {
 
         }
 
+        public override string ToString() => Year + "年" + Month + "月";
+        //5.1.3
         public YearMonth addOneMonth(int year, int month) {
             if (month == 12) {
                 return new YearMonth(year + 1, 1);
@@ -29,6 +31,8 @@ namespace Section02 {
                 return new YearMonth(year, month+1);
             }
         }
+
+        
 
     }
 }

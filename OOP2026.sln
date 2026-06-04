@@ -69,6 +69,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "set1", "set1", "{C86D4C9B-3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "section1", "game\set1\section1\section1.csproj", "{601B783B-C2D7-4500-BAC2-34C8602926FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise02", "Chapter05\メソッドに関するイディオム\Exercise02\Exercise02.csproj", "{7E2E0FD9-09F6-0558-5AB8-7666A9F361D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{601B783B-C2D7-4500-BAC2-34C8602926FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{601B783B-C2D7-4500-BAC2-34C8602926FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{601B783B-C2D7-4500-BAC2-34C8602926FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E2E0FD9-09F6-0558-5AB8-7666A9F361D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2E0FD9-09F6-0558-5AB8-7666A9F361D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2E0FD9-09F6-0558-5AB8-7666A9F361D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E2E0FD9-09F6-0558-5AB8-7666A9F361D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -166,6 +172,7 @@ Global
 		{ACBF07D6-4229-4288-91BC-6ABBC7804336} = {E52646E9-4DC9-4E6F-87A6-27C94A6C815A}
 		{C86D4C9B-3805-4DA5-9FB1-9FF25652DDD7} = {DD4E1FA2-6B36-4D29-9710-E02FFE443467}
 		{601B783B-C2D7-4500-BAC2-34C8602926FD} = {C86D4C9B-3805-4DA5-9FB1-9FF25652DDD7}
+		{7E2E0FD9-09F6-0558-5AB8-7666A9F361D4} = {E52646E9-4DC9-4E6F-87A6-27C94A6C815A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0537FBEE-AF8B-49A0-BEBF-F5279F0498E9}
