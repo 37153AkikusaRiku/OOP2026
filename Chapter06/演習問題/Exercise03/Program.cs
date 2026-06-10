@@ -25,11 +25,14 @@ namespace Exercise03 {
         }
 
         private static void Exercise1(string text) {
-            
+            int spaceCount = text.Count(c => c == ' ');
+            Console.WriteLine(spaceCount);
         }
 
         private static void Exercise2(string text) {
-            
+            string result = text.Replace("big", "small");
+
+            Console.WriteLine(result);
         }
 
         private static void Exercise3(string text) {
@@ -37,11 +40,17 @@ namespace Exercise03 {
         }
 
         private static void Exercise4(string text) {
-            
+            int spaceCount = text.Count(c => c == ' ');
+            Console.WriteLine(spaceCount+1);
         }
 
         private static void Exercise5(string text) {
-            
+            var shortWords = text.Split(' ')
+                                        .Where(word => word.Length <= 4);
+
+            foreach (var word in shortWords) {
+                Console.WriteLine(word);
+            }
         }
 
         private static void Exercise6(string text) {
