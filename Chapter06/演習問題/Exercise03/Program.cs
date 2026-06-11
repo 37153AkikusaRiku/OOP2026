@@ -36,12 +36,12 @@ namespace Exercise03 {
         }
 
         private static void Exercise3(string text) {
-            
+
         }
 
         private static void Exercise4(string text) {
             int spaceCount = text.Count(c => c == ' ');
-            Console.WriteLine(spaceCount+1);
+            Console.WriteLine(spaceCount + 1);
         }
 
         private static void Exercise5(string text) {
@@ -53,8 +53,27 @@ namespace Exercise03 {
             }
         }
 
-        private static void Exercise6(string text) {
-            
+        public static void Exercise6(string text) {
+            var str = text.ToLower().Replace(" ", "　");//小文字にする、空白をなくす
+
+            ////ディクショナリ   
+            //var alphDicCount = Enumerable.Range('a', 26).
+            //    ToDictionary(num => ((char)num).ToString().num => 0);
+
+
+            var dict = new SortedDictionary<char, int>();
+            foreach (var c in str) {
+                if (dict.ContainsKey(c))
+                    //すでに店舗名が辞書のキーに登録されている場合
+                    dict[c]++;
+                else
+                    //店舗名の登録がまだない場合
+                    dict[c] = 1;
+                foreach (var word in dict) {
+                    Console.WriteLine(word.Key + ";" + word.Value);
+                }
+            }
+
         }
     }
 }
