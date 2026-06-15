@@ -1,7 +1,10 @@
 ﻿
+using System.Text;
+
 namespace Exercise03 {
     internal class Program {
         static void Main(string[] args) {
+
             var text = "Jackdaws love my big sphinx of quartz";
             #region
             Console.WriteLine("6.3.1");
@@ -36,6 +39,22 @@ namespace Exercise03 {
         }
 
         private static void Exercise3(string text) {
+            var shortWords = text.Split(' ');
+
+            var sb = new StringBuilder();
+            foreach (var word in shortWords) {
+                if (sb.Length > 0) {
+                    sb.Append(" ");
+                }
+                sb.Append(word);
+            }
+            Console.WriteLine(sb + ".");
+
+            string result = string.Join(" ", shortWords);
+            Console.WriteLine(result + ".");
+
+
+
 
         }
 
@@ -56,23 +75,43 @@ namespace Exercise03 {
         public static void Exercise6(string text) {
             var str = text.ToLower().Replace(" ", "　");//小文字にする、空白をなくす
 
-            ////ディクショナリ   
+            //////ディクショナリ   
             //var alphDicCount = Enumerable.Range('a', 26).
-            //    ToDictionary(num => ((char)num).ToString().num => 0);
+            //    ToDictionary(num => ((char)num),num => 0);
 
 
-            var dict = new SortedDictionary<char, int>();
-            foreach (var c in str) {
-                if (dict.ContainsKey(c))
-                    //すでに店舗名が辞書のキーに登録されている場合
-                    dict[c]++;
-                else
-                    //店舗名の登録がまだない場合
-                    dict[c] = 1;
-                foreach (var word in dict) {
-                    Console.WriteLine(word.Key + ";" + word.Value);
-                }
-            }
+            ////var dict = new SortedDictionary<char, int>();
+
+            //foreach (var c in str) {
+            //    if (alphDicCount.ContainsKey(c))
+            //        //すでに店舗名が辞書のキーに登録されている場合
+            //        alphDicCount[c]++;
+            //    else
+            //        //店舗名の登録がまだない場合
+            //        alphDicCount[c] = 1;
+            //    foreach (var word in alphDicCount) {
+            //        Console.WriteLine(word.Key + ";" + word.Value);
+            //    }
+            //}
+
+            ////配列を用いた集計
+            //var array = Enumerable.Repeat(0, 26).ToArray();
+            ////foreach (var alph in str) {
+            ////    array[alph - 'a']++;
+            ////}
+            ////for (char ch = 'a'; ch <= 'z'; ch++) {
+            ////    Console.WriteLine($"{ch}:{array[ch - 'a']}");
+            ////}
+            ////foreach (var num in array) {
+
+            ////}
+
+            ////'a'から順にカウントして集計
+            //for (char ch = 'a'; ch <= 'z'; ch++) {
+            //    Console.WriteLine($"{ch}:{text.Count(c=>c==(ch))}");
+            //}
+
+
 
         }
     }
