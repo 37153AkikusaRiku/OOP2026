@@ -1,7 +1,30 @@
-﻿namespace Exercise04 {
+﻿using System.Threading.Channels;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace Exercise04 {
     internal class Program {
         static void Main(string[] args) {
             var line = "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886";
+            var cutWords = new char[] { '=',';' };
+            var Words = line.Split(cutWords);
+            string result = string.Join(" ", Words);
+            //Console.WriteLine(result);
+
+            for (int i = 0; i < Words.Length; i+=2) {
+                Console.Write(ToJapanese(Words[i]));
+                Console.WriteLine(":" + Words[i+1]);
+            }
+
+            //foreach (var word in Words) {
+                
+            //    Console.Write(ToJapanese(word));
+
+            //    if (ToJapanese(word).Equals(word)) {
+            //        Console.WriteLine("");
+            //    }
+
+            //}
+            
 
 
 
@@ -13,7 +36,7 @@
                 "Novelist" => "作家",
                 "BestWork" => "代表作",
                 "Born" => "誕生年",
-                _ => "引数keyは、正しい値ではありません"
+                _ => key
             };
             //古い書き方
             //switch (key) {
