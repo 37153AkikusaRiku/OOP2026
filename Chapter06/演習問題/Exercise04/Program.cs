@@ -15,6 +15,12 @@ namespace Exercise04 {
                 Console.WriteLine(":" + Words[i+1]);
             }
 
+
+            foreach (var item in line.Split(';')) {
+
+
+            }
+
             //foreach (var word in Words) {
                 
             //    Console.Write(ToJapanese(word));
