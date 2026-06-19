@@ -1,4 +1,5 @@
-﻿using Section01;    //Section01プロジェクトにあるBookクラスを利用
+﻿using Section01;
+using System.Text;    //Section01プロジェクトにあるBookクラスを利用
 
 namespace Exercise02 {
     internal class Program {
@@ -37,16 +38,23 @@ namespace Exercise02 {
         }
 
         private static void Exercise1(List<Book> books) {
-            
+            var selctBook = books.Find(n => n.Title==("ワンダフル・C#ライフ"));
+            Console.WriteLine("価格"+selctBook.Price+"ページ数"+selctBook.Pages);
         }
 
         private static void Exercise2(List<Book> books) {
-            
+            var whCntBook = books.Where(n => n.Title.Contains("C#")).Count();
+            Console.WriteLine(whCntBook);
         }
 
         private static void Exercise3(List<Book> books) {
-            
-        }
+            var whCntBook = books.Where(n => n.Title.Contains("C#"));
+            var avBook = 0;
+            foreach (var item in whCntBook) {
+                avBook += item.Pages;
+            }
+            Console.WriteLine(avBook/whCntBook.Count());
+            }
 
         private static void Exercise4(List<Book> books) {
             
