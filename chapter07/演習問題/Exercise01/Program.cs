@@ -26,7 +26,12 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(int[] numbers) {
-            Console.WriteLine(numbers[numbers.Length - 1] + numbers[numbers.Length - 2]);
+            //Console.WriteLine(numbers[numbers.Length - 1] + numbers[numbers.Length - 2]);
+
+            var numbersLast = numbers.TakeLast(2);
+            foreach (var item in numbersLast) {
+                Console.WriteLine(item);
+            }
         }
 
         private static void Exercise3(int[] numbers) {
