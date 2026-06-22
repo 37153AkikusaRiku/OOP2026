@@ -44,18 +44,25 @@ namespace Exercise02 {
         }
 
         private static void Exercise2(List<Book> books) {
-            var whCntBook = books.Where(n => n.Title.Contains("C#")).Count();
+            //var whCntBook = books.Where(n => n.Title.Contains("C#")).Count();
+            //Console.WriteLine(whCntBook);
+
+            var whCntBook = books.Count(n => n.Title.Contains("C#"));
             Console.WriteLine(whCntBook);
+
         }
 
         private static void Exercise3(List<Book> books) {
-            var whCntBook = books.Where(n => n.Title.Contains("C#"));
-            var avBook = 0;
-            foreach (var item in whCntBook) {
-                avBook += item.Pages;
-            }
-            Console.WriteLine(avBook/whCntBook.Count());
-            }
+            //var whCntBook = books.Where(n => n.Title.Contains("C#"));
+            //var avBook = 0;
+            //foreach (var item in whCntBook) {
+            //    avBook += item.Pages;
+            //}
+            //Console.WriteLine(avBook/whCntBook.Count());
+            var whCntBook = books.Where(n => n.Title.Contains("C#")).Average(n=>n.Price);
+            Console.WriteLine(whCntBook);
+
+        }
 
         private static void Exercise4(List<Book> books) {
             var hgitBook = books.Find(n => n.Price >= 4000);
