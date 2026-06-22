@@ -61,40 +61,52 @@
         //問題１　合計値を表示（式形式で記述せよ）
         //　　　　出力結果【618】
         private static void Exercise01(int[] numbers) {
-
+            var sum = 0;
+            foreach (var item in numbers) {
+                sum += item;
+            }
+            Console.WriteLine("合計" + sum);
         }
 
 
         //問題２　偶数の最大値を表示（式形式で記述せよ）
         //　　　　出力結果【94】
         private static void Exercise02(int[] numbers) {
-
+            var maxSelectNumbers = numbers.Where(n => n % 2 == 0).Max();
+            Console.WriteLine(maxSelectNumbers);
         }
 
 
         //問題３　昇順に並べて表示（遅延実行とする）
         //　　　　出力結果【12 14 17 20 31 35 40 48 53 76 87 91 94】
         private static void Exercise03(int[] numbers) {
-            
+            var upNumbers = numbers.OrderBy(n => n);
+            foreach (var item in upNumbers) {
+                Console.WriteLine(item);
+            }
         }
 
         //問題４　10以上50以下の数字のみを表示（即時実行でも可とする）
         //　　　　出力結果【12 14 20 40 35 31 17 48】
         private static void Exercise04(int[] numbers) {
-            
+            var selectNumbers = numbers.Where(n => 10 <= n && n <= 50);
+            foreach (var item in selectNumbers) {
+                Console.WriteLine(item);
+            }
         }
 
         //問題５　Countメソッドを使い、小文字の'n'が含まれている都市名がいくつあるかカウントして結果を表示
         //　　　　出力結果【5】
         private static void Exercise05(List<string> cities) {
-      
-        
+            var cntNumbers = cities.Count(n => n.Contains("n"));
+            Console.WriteLine(cntNumbers);
+
         }
 
         //問題６　全都市数
         //　　　　出力結果【8】
         private static void Exercise06(List<string> cities) {
-        
+            //var cntNumbers = cities.Countt
         }
 
         //問題７　各都市名をアルファベット順（昇順）に出力
@@ -108,7 +120,7 @@
         //          Paris
         //          Tokyo】
         private static void Exercise07(List<string> cities) {
-        
+
 
         }
 
@@ -123,8 +135,8 @@
         //　　　　  Canberra : 8文字
         //　　　　  Hong Kong : 9文字】
         private static void Exercise08(List<string> cities) {
-    
-        
+
+
         }
 
         //問題９　各都市名と文字数を文字数の昇順で表示
@@ -138,9 +150,9 @@
         //          New Delhi : 9文字
         //          Hong Kong : 9文字】
         private static void Exercise09(List<string> cities) {
-        
-        
-        
+
+
+
         }
 
         //問題１０　６文字の都市名を表示
@@ -148,7 +160,7 @@
         //        【London
         //          Berlin】
         private static void Exercise10(List<string> cities) {
-        
+
 
         }
     }
