@@ -7,12 +7,21 @@
             _score = ReadScore(filePath);
         }
 
-        //メソッドの概要：
+        //メソッドの概要：各項目の初期値設定
         private static IEnumerable<Student> ReadScore(string filePath) {
             var sales = new List<Student>();
             var lines = File.ReadAllLines(filePath);
-            
 
+            foreach (var line in lines) {
+                var items = line.Split(',');
+                var sale = new Student {
+                    Name = items[0],
+                    Subject = items[1],
+                    Score = int.Parse(items[2]),
+                };
+                sales.Add(sale);
+
+            }
 
 
 
@@ -22,15 +31,22 @@
             return sales;
         }
 
-        //メソッドの概要：
+        //メソッドの概要：各学科の点数を集計
         public IDictionary<string, int> GetPerStudentScore() {
             var dict = new Dictionary<string, int>();
+            foreach (var scores in _score) {
+                if (dict.ContainsKey(scores.Subject))
+                    //すでに学科名が辞書のキーに登録されている場合
+                    dict[scores.Subject] += scores.Score;//点数を足しこみ
+                else
+                    //学科名の登録がまだない場合
+                    dict[scores.Subject] = scores.Score;//新規に点数を登録
+            }
 
 
 
 
-
-
+                
             return dict;
         }
     }
