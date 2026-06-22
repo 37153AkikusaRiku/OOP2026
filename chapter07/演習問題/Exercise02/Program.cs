@@ -65,8 +65,11 @@ namespace Exercise02 {
         }
 
         private static void Exercise4(List<Book> books) {
-            var hgitBook = books.Find(n => n.Price >= 4000);
+            //var hgitBook = books.Find(n => n.Price >= 4000);
+            //Console.WriteLine(hgitBook.Title);
+            var hgitBook = books.FirstOrDefault(n => n.Price >= 4000);
             Console.WriteLine(hgitBook.Title);
+
         }
 
         private static void Exercise5(List<Book> books) {
@@ -87,7 +90,10 @@ namespace Exercise02 {
             var whCntBook2 = whCntBook.Where(n => n.Pages <= 500);
             foreach (var item in whCntBook2) {
                 Console.WriteLine(item.Title);
+
             }
+
+
         }
     }
 }
