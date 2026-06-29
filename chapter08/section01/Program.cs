@@ -1,4 +1,6 @@
-﻿namespace section01 {
+﻿using System.Threading.Channels;
+
+namespace section01 {
     internal class Program {
         static private Dictionary<string, string> prefOfficeDict = new Dictionary<string, string>();
 
@@ -18,37 +20,42 @@
 
                 prefOfficeDict.Add(pref, prefCaptalLocation);
 
+                if (prefOfficeDict.ContainsKey(pref)) {
+                    Console.WriteLine("上書きする？");
+                    if (Console.ReadLine()=="N") {
+                        continue;
+                    }
+                }
+
+
             }
 
             foreach (var item in prefOfficeDict) {
                 Console.WriteLine(item.Key + item.Value);
             }
+            menu();
+        }
 
 
 
+            static void menu() {
+                while (true) {
+                    Console.WriteLine("＊＊＊メニュー＊＊＊");
+                    Console.WriteLine("1：一覧表示　2：検索　9：終了");
+                    int result = int.Parse(Console.ReadLine());
+                    switch (result) {
 
+                        case 1:
+                            vaw(prefOfficeDict);
+                            break;
+                        //foreach (var item in prefOfficeDict) {
+                        //    Console.WriteLine(item.Key + item.Value);
+                        //}
+                        //break;
 
-
-
-
-
-            while (true) {
-                Console.WriteLine("＊＊＊メニュー＊＊＊");
-                Console.WriteLine("1：一覧表示　2：検索　9：終了");
-                int result = int.Parse(Console.ReadLine());
-                switch (result) {
-
-                    case 1:
-                        vaw(prefOfficeDict);
-                        break;
-                    //foreach (var item in prefOfficeDict) {
-                    //    Console.WriteLine(item.Key + item.Value);
-                    //}
-                    //break;
-
-                    case 2:
-                        findVaw(prefOfficeDict);
-                        break;
+                        case 2:
+                            findVaw(prefOfficeDict);
+                            break;
                         //Console.Write("検索：");
                         //var ch = Console.ReadLine();
                         //foreach (var item in prefOfficeDict) {
@@ -60,13 +67,13 @@
                         //}
                         //break;
 
-                    case 9:
-                        break;
+                        case 9:
+                            break;
+                    }
+
                 }
 
             }
-
-
 
 
 
@@ -95,6 +102,6 @@
             }
         }
     }
-}
+
     
 
