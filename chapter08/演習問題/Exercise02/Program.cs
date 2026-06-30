@@ -13,7 +13,7 @@ namespace Exercise02 {
         }
         //8-1-1
         private static void Exercise1(string text) {
-            var dict = new Dictionary<char, int>();
+            var dict = new SortedDictionary<char, int>();
             string bigtext = text.ToUpper();
             
             
@@ -32,7 +32,24 @@ namespace Exercise02 {
         }
 
         private static void Exercise2(string text) {
+            var dict = new SortedDictionary<char, int>();
+            string bigtext = text.ToUpper();
 
+
+            foreach (var item in bigtext) {
+                if (item.ToString() == " ") {
+                    continue;
+                }
+                if (dict.ContainsKey(item))
+                    dict[item] += 1;
+                else
+                    dict[item] = 1;
+            }
+            foreach (var item in dict.OrderBy(n => n.Key)) {
+                Console.WriteLine(item);
+            }
         }
+
     }
 }
+
