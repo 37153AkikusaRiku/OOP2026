@@ -137,7 +137,9 @@
         //　　　　  Canberra : 8文字
         //　　　　  Hong Kong : 9文字】
         private static void Exercise08(List<string> cities) {
-
+            foreach (var item in cities) {
+                Console.WriteLine(item+":"+item.Length+"文字");
+            }
 
         }
 
@@ -152,8 +154,9 @@
         //          New Delhi : 9文字
         //          Hong Kong : 9文字】
         private static void Exercise09(List<string> cities) {
-
-
+            foreach (var item in cities.OrderBy(n=>n.Length)) {
+                Console.WriteLine(item + ":" + item.Length + "文字");
+            }
 
         }
 
@@ -162,7 +165,9 @@
         //        【London
         //          Berlin】
         private static void Exercise10(List<string> cities) {
-
+            foreach (var item in cities.Where(n=>n.Length==6)) {
+                Console.WriteLine(item);
+            }
 
         }
     }
