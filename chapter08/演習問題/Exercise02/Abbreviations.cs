@@ -38,7 +38,7 @@ public class Abbreviations {
 
 
     // 8.2.2（最終的に式形式で記述すること）
-    public bool Remove(string abb) => _dict.ContainsKey(abb);
+    public bool Remove(string abb) => _dict.Remove(abb);
 
 
 

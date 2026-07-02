@@ -18,8 +18,10 @@
 
 
             Console.WriteLine();    //改行
-
-
+            // 8.2.3 (Removeの呼び出し例)
+            if (abbrs.Remove("NPT")) {
+                Console.WriteLine("削除しました");
+            }
 
 
 
@@ -32,12 +34,11 @@
             // 8.2.4
             // 新たなGetAllメソッドを追加済みなので、使用してLINQで処理を行う
 
-            
-            
-            foreach (var item in abbrs.GetAll()) {
-                if (3==item.Key.Count()) {
-                    Console.WriteLine(item);
-                }
+            var query = abbrs.GetAll().Where(n => n.Key.Length == 3);
+
+
+            foreach (var item in query) {
+                Console.WriteLine("{0}={1}",item.Key,item.Value);
             }
             
 
