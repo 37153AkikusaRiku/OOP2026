@@ -35,8 +35,24 @@ public class Abbreviations {
     public int Count => _dict.Count;
 
 
+
+
     // 8.2.2（最終的に式形式で記述すること）
-    public bool Remove(string abb) => true;
+    public bool Remove(string abb) => _dict.ContainsKey(abb);
+
+
+
+    //    {
+    //    foreach (var item in _dict) {
+    //        if (abb==item.Key) {
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
+
+
+
 
     // Dictionary<TKey, TValue>は、
     // IEnumerable<KeyValuePair<TKey, TValue>>を実装しているので
