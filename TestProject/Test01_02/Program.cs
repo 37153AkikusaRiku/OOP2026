@@ -71,10 +71,9 @@
 
         //問題２　偶数の最大値を表示（式形式で記述せよ）
         //　　　　出力結果【94】
-        private static void Exercise02(int[] numbers) {
-            var maxSelectNumbers = numbers.Where(n => n % 2 == 0).Max();
-            Console.WriteLine(maxSelectNumbers);
-        }
+        private static void Exercise02(int[] numbers) => Console.WriteLine(numbers.Where(n => n % 2 == 0).Max());
+        
+        
 
 
         //問題３　昇順に並べて表示（遅延実行とする）
@@ -106,7 +105,8 @@
         //問題６　全都市数
         //　　　　出力結果【8】
         private static void Exercise06(List<string> cities) {
-            //var cntNumbers = cities.Countt
+            var cntNumbers = cities.Count();
+            Console.WriteLine(cntNumbers);
         }
 
         //問題７　各都市名をアルファベット順（昇順）に出力
@@ -120,7 +120,9 @@
         //          Paris
         //          Tokyo】
         private static void Exercise07(List<string> cities) {
-
+            foreach (var item in cities.OrderBy(n=>n)) {
+                Console.WriteLine(item);
+            }
 
         }
 
