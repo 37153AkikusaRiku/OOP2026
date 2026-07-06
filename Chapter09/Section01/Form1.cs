@@ -1,4 +1,5 @@
 using System.Globalization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Section01 {
     public partial class Form1 : Form {
@@ -11,14 +12,24 @@ namespace Section01 {
         }
 
         private void getBtn_Click(object sender, EventArgs e) {
-            var dt1 = dtpDate.Value;
-            DayOfWeek dayOfWeek = dt1.DayOfWeek;
-            var culture = new CultureInfo("ja-JP");
-            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
-            var strDate = dt1.ToString("ggyyîNMåédì˙", culture);
-            outTb.Text = strDate;
+            DateTime date = dtpDate.Value;
+            DateTime date2 = dtp2.Value;
 
 
+            outTb.Text = "Ç†Ç»ÇΩÇÕ" + (date - date2).Days / 365 + "çŒÇ≈Ç∑";
+
+
+
+        }
+
+        private void getBtn2_Click(object sender, EventArgs e) {
+            DateTime date = dtpDate.Value;
+            DateTime date2 = dtp2.Value;
+            textBox1.Text = "" + (date - date2).Days;
+
+        }
+
+        private void dtp2_ValueChanged(object sender, EventArgs e) {
 
         }
     }
