@@ -31,6 +31,8 @@
             dtp2 = new DateTimePicker();
             getBtn2 = new Button();
             textBox1 = new TextBox();
+            label2 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)nextDay).BeginInit();
             SuspendLayout();
             // 
@@ -45,7 +47,7 @@
             // 
             // getBtn
             // 
-            getBtn.Location = new Point(317, 13);
+            getBtn.Location = new Point(384, 47);
             getBtn.Name = "getBtn";
             getBtn.Size = new Size(166, 71);
             getBtn.TabIndex = 1;
@@ -90,7 +92,7 @@
             // 
             // getBtn2
             // 
-            getBtn2.Location = new Point(317, 135);
+            getBtn2.Location = new Point(384, 145);
             getBtn2.Name = "getBtn2";
             getBtn2.Size = new Size(168, 71);
             getBtn2.TabIndex = 6;
@@ -106,12 +108,34 @@
             textBox1.Size = new Size(253, 39);
             textBox1.TabIndex = 7;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label2.Location = new Point(269, 186);
+            label2.Name = "label2";
+            label2.Size = new Size(97, 30);
+            label2.TabIndex = 4;
+            label2.Text = "経過日数";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            label3.Location = new Point(269, 133);
+            label3.Name = "label3";
+            label3.Size = new Size(55, 30);
+            label3.TabIndex = 4;
+            label3.Text = "年齢";
+            // 
             // Form1
             // 
             ClientSize = new Size(978, 579);
             Controls.Add(textBox1);
             Controls.Add(getBtn2);
             Controls.Add(dtp2);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(nextDay);
             Controls.Add(outTb);
@@ -135,5 +159,7 @@
         private DateTimePicker dtp2;
         private Button getBtn2;
         private TextBox textBox1;
+        private Label label2;
+        private Label label3;
     }
 }
