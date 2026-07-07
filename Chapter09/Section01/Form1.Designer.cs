@@ -33,6 +33,8 @@
             textBox1 = new TextBox();
             label2 = new Label();
             label3 = new Label();
+            tb3 = new TextBox();
+            Bt3 = new Button();
             ((System.ComponentModel.ISupportInitialize)nextDay).BeginInit();
             SuspendLayout();
             // 
@@ -88,7 +90,6 @@
             dtp2.Name = "dtp2";
             dtp2.Size = new Size(254, 50);
             dtp2.TabIndex = 5;
-            dtp2.ValueChanged += dtp2_ValueChanged;
             // 
             // getBtn2
             // 
@@ -98,7 +99,6 @@
             getBtn2.TabIndex = 6;
             getBtn2.Text = "計算";
             getBtn2.UseVisualStyleBackColor = true;
-            getBtn2.Click += getBtn2_Click;
             // 
             // textBox1
             // 
@@ -128,10 +128,29 @@
             label3.TabIndex = 4;
             label3.Text = "年齢";
             // 
+            // tb3
+            // 
+            tb3.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tb3.Location = new Point(12, 299);
+            tb3.Name = "tb3";
+            tb3.Size = new Size(775, 39);
+            tb3.TabIndex = 7;
+            // 
+            // Bt3
+            // 
+            Bt3.Location = new Point(619, 47);
+            Bt3.Name = "Bt3";
+            Bt3.Size = new Size(168, 71);
+            Bt3.TabIndex = 6;
+            Bt3.Text = "計算";
+            Bt3.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             ClientSize = new Size(978, 579);
+            Controls.Add(tb3);
             Controls.Add(textBox1);
+            Controls.Add(Bt3);
             Controls.Add(getBtn2);
             Controls.Add(dtp2);
             Controls.Add(label3);
@@ -161,5 +180,7 @@
         private TextBox textBox1;
         private Label label2;
         private Label label3;
+        private TextBox tb3;
+        private Button Bt3;
     }
 }
