@@ -25,12 +25,12 @@
         private void InitializeComponent() {
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            outputBt2 = new Button();
+            outputBt1 = new Button();
+            outputBt3 = new Button();
+            outputTextBox1 = new TextBox();
+            outputTextBox2 = new TextBox();
+            outputTextBox3 = new TextBox();
             SuspendLayout();
             // 
             // button1
@@ -51,68 +51,71 @@
             button2.Text = "button1";
             button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // outputBt2
             // 
-            button3.Location = new Point(44, 162);
-            button3.Name = "button3";
-            button3.Size = new Size(164, 62);
-            button3.TabIndex = 0;
-            button3.Text = "button1";
-            button3.UseVisualStyleBackColor = true;
+            outputBt2.Location = new Point(44, 162);
+            outputBt2.Name = "outputBt2";
+            outputBt2.Size = new Size(164, 62);
+            outputBt2.TabIndex = 0;
+            outputBt2.Text = "button1";
+            outputBt2.UseVisualStyleBackColor = true;
+            outputBt2.Click += outputBt2_Click;
             // 
-            // button4
+            // outputBt1
             // 
-            button4.Location = new Point(44, 44);
-            button4.Name = "button4";
-            button4.Size = new Size(164, 62);
-            button4.TabIndex = 0;
-            button4.Text = "button1";
-            button4.UseVisualStyleBackColor = true;
+            outputBt1.Location = new Point(44, 44);
+            outputBt1.Name = "outputBt1";
+            outputBt1.Size = new Size(164, 62);
+            outputBt1.TabIndex = 0;
+            outputBt1.Text = "button1";
+            outputBt1.UseVisualStyleBackColor = true;
+            outputBt1.Click += button4_Click;
             // 
-            // button5
+            // outputBt3
             // 
-            button5.Location = new Point(44, 290);
-            button5.Name = "button5";
-            button5.Size = new Size(164, 62);
-            button5.TabIndex = 0;
-            button5.Text = "button1";
-            button5.UseVisualStyleBackColor = true;
+            outputBt3.Location = new Point(44, 290);
+            outputBt3.Name = "outputBt3";
+            outputBt3.Size = new Size(164, 62);
+            outputBt3.TabIndex = 0;
+            outputBt3.Text = "button1";
+            outputBt3.UseVisualStyleBackColor = true;
+            outputBt3.Click += outputBt3_Click;
             // 
-            // textBox1
+            // outputTextBox1
             // 
-            textBox1.Font = new Font("Yu Gothic UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            textBox1.Location = new Point(251, 56);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(467, 50);
-            textBox1.TabIndex = 1;
+            outputTextBox1.Font = new Font("Yu Gothic UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            outputTextBox1.Location = new Point(251, 56);
+            outputTextBox1.Name = "outputTextBox1";
+            outputTextBox1.Size = new Size(467, 50);
+            outputTextBox1.TabIndex = 1;
             // 
-            // textBox2
+            // outputTextBox2
             // 
-            textBox2.Font = new Font("Yu Gothic UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            textBox2.Location = new Point(251, 174);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(467, 50);
-            textBox2.TabIndex = 1;
+            outputTextBox2.Font = new Font("Yu Gothic UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            outputTextBox2.Location = new Point(251, 174);
+            outputTextBox2.Name = "outputTextBox2";
+            outputTextBox2.Size = new Size(467, 50);
+            outputTextBox2.TabIndex = 1;
             // 
-            // textBox3
+            // outputTextBox3
             // 
-            textBox3.Font = new Font("Yu Gothic UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            textBox3.Location = new Point(251, 302);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(467, 50);
-            textBox3.TabIndex = 1;
+            outputTextBox3.Font = new Font("Yu Gothic UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            outputTextBox3.Location = new Point(251, 302);
+            outputTextBox3.Name = "outputTextBox3";
+            outputTextBox3.Size = new Size(467, 50);
+            outputTextBox3.TabIndex = 1;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(button4);
-            Controls.Add(button5);
-            Controls.Add(button3);
+            Controls.Add(outputTextBox3);
+            Controls.Add(outputTextBox2);
+            Controls.Add(outputTextBox1);
+            Controls.Add(outputBt1);
+            Controls.Add(outputBt3);
+            Controls.Add(outputBt2);
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "Form1";
@@ -125,11 +128,11 @@
 
         private Button button1;
         private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private Button outputBt2;
+        private Button outputBt1;
+        private Button outputBt3;
+        private TextBox outputTextBox1;
+        private TextBox outputTextBox2;
+        private TextBox outputTextBox3;
     }
 }
