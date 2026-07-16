@@ -141,5 +141,16 @@ namespace CarReportSystem {
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e) {
+
+        }
+
+        private void btDeletePicture_Click(object sender, EventArgs e) {
+            pbPicture.Image = null;
+        }
+
+        private void btDeleteRecord_Click(object sender, EventArgs e) {
+            listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
+        }
     }
 }
