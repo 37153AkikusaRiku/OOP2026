@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
@@ -151,6 +152,27 @@ namespace CarReportSystem {
 
         private void btDeleteRecord_Click(object sender, EventArgs e) {
             listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
+            empty();
         }
+
+        private void btModifyRecord_Click(object sender, EventArgs e) {
+            DataGridViewRow selectedRow = dgvRecords.CurrentRow;
+
+            dgvRecords.CurrentRow.Cells["Date"].Value = dtpDate.Value;
+            dgvRecords.CurrentRow.Cells["Author"].Value = cbAuthor.Text;
+
+            dgvRecords.CurrentRow.Cells["Meker"].Value = getRadioButttonMaker();
+
+            dgvRecords.CurrentRow.Cells["CarName"].Value = cbCarName.Text;
+            dgvRecords.CurrentRow.Cells["Report"].Value = tbReport.Text;
+            dgvRecords.CurrentRow.Cells["Picture"].Value = pbPicture.Image;
+
+
+
+
+            dgvRecords.Refresh();
+        }
+
+        
     }
 }
