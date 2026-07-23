@@ -151,11 +151,49 @@ namespace CarReportSystem {
         }
 
         private void btDeleteRecord_Click(object sender, EventArgs e) {
+            if (dgvRecords.CurrentRow == null || dgvRecords.CurrentRow.Index < 0) {
+                MessageBox.Show("削除する行が選択されていません。", "通知", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
             empty();
+
+            if (dgvRecords.CurrentRow == null || dgvRecords.CurrentRow.Index < 0) {
+                return;
+            }
+
+            dtpDate.Value = (DateTime)dgvRecords.CurrentRow.Cells["Date"].Value;
+            cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
+
+            SetRadoButtonMaker((MakerGroup)dgvRecords.CurrentRow.Cells["meker"].Value);
+
+            cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
+            tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
+            pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
         }
 
         private void btModifyRecord_Click(object sender, EventArgs e) {
+            if (dgvRecords.CurrentRow == null || dgvRecords.CurrentRow.Index < 0) {
+                MessageBox.Show("修正する行が選択されていません。", "通知", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+
+            DialogResult result = MessageBox.Show(
+               "選択したレコードを修正してもよろしいですか？",
+               "修正の確認",
+               MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question
+            );
+
+            // 3. 「いいえ」が押された場合は、ここで処理を中断する
+            if (result == DialogResult.No) {
+                return;
+            }
+
+            // 4. 「はい」の場合のみ、以下の修正処理を実行
+
             DataGridViewRow selectedRow = dgvRecords.CurrentRow;
 
             dgvRecords.CurrentRow.Cells["Date"].Value = dtpDate.Value;
@@ -166,13 +204,13 @@ namespace CarReportSystem {
             dgvRecords.CurrentRow.Cells["CarName"].Value = cbCarName.Text;
             dgvRecords.CurrentRow.Cells["Report"].Value = tbReport.Text;
             dgvRecords.CurrentRow.Cells["Picture"].Value = pbPicture.Image;
-
+            //listCarReports[dgvRecords.CurrentRow.Index].Dat //e = dtpDate.Value;この形でもできる
 
 
 
             dgvRecords.Refresh();
         }
 
-        
+
     }
 }

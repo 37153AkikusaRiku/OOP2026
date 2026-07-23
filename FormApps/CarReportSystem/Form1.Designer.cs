@@ -236,7 +236,7 @@
             dgvRecords.AllowUserToAddRows = false;
             dgvRecords.AllowUserToDeleteRows = false;
             dgvRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRecords.Location = new Point(117, 431);
+            dgvRecords.Location = new Point(125, 431);
             dgvRecords.Name = "dgvRecords";
             dgvRecords.Size = new Size(719, 292);
             dgvRecords.TabIndex = 4;
