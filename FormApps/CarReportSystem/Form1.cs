@@ -37,9 +37,8 @@ namespace CarReportSystem {
             SetCbAuthor(cbAuthor.Text);
             SetCbcarname(cbCarName.Text);
 
-
+            dgvRecords.ClearSelection();
         }
-
         private MakerGroup getRadioButttonMaker() {
             if (rbHonda.Checked) {
                 return MakerGroup.ホンダ;
@@ -177,7 +176,11 @@ namespace CarReportSystem {
                 MessageBox.Show("修正する行が選択されていません。", "通知", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
+            //記録者と車名が未記入だった場合は追加しない
+            if (cbAuthor.Text == string.Empty || cbCarName.Text == string.Empty) {
+                tsslb.Text = "記録者、または車名が未記入です";
+                return;
+            }
 
 
             DialogResult result = MessageBox.Show(
@@ -201,13 +204,13 @@ namespace CarReportSystem {
 
             dgvRecords.CurrentRow.Cells["Meker"].Value = getRadioButttonMaker();
 
-            dgvRecords.CurrentRow.Cells["CarName"].Value = cbCarName.Text;
+            dgvRecords.CurrentRow.Cells["CarName"].Value = cbCarName.Text.Trim();
             dgvRecords.CurrentRow.Cells["Report"].Value = tbReport.Text;
             dgvRecords.CurrentRow.Cells["Picture"].Value = pbPicture.Image;
             //listCarReports[dgvRecords.CurrentRow.Index].Dat //e = dtpDate.Value;この形でもできる
 
-
-
+            SetCbAuthor(cbAuthor.Text.Trim());
+            SetCbcarname (cbAuthor.Text.Trim());
             dgvRecords.Refresh();
         }
 
