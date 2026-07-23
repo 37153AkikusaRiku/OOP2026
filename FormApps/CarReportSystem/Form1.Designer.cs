@@ -374,36 +374,37 @@
             // 開くToolStripMenuItem
             // 
             開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            開くToolStripMenuItem.Size = new Size(155, 22);
+            開くToolStripMenuItem.Size = new Size(180, 22);
             開くToolStripMenuItem.Text = "開く...";
             // 
             // 保存ToolStripMenuItem
             // 
             保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            保存ToolStripMenuItem.Size = new Size(155, 22);
+            保存ToolStripMenuItem.Size = new Size(180, 22);
             保存ToolStripMenuItem.Text = "保存...";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(152, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // 色設定ToolStripMenuItem
             // 
             色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
-            色設定ToolStripMenuItem.Size = new Size(155, 22);
+            色設定ToolStripMenuItem.Size = new Size(180, 22);
             色設定ToolStripMenuItem.Text = "色設定...";
+            色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(152, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
             終了ToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.F4;
-            終了ToolStripMenuItem.Size = new Size(155, 22);
+            終了ToolStripMenuItem.Size = new Size(180, 22);
             終了ToolStripMenuItem.Text = "終了(&X)";
             // 
             // ヘルプHToolStripMenuItem
@@ -442,6 +443,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(856, 782);
             Controls.Add(statusStrip1);
             Controls.Add(pbPicture);

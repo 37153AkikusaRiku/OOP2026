@@ -211,6 +211,15 @@ namespace CarReportSystem {
             dgvRecords.Refresh();
         }
 
+        private void êFê›íËToolStripMenuItem_Click(object sender, EventArgs e) {
+            using (ColorDialog colorDialog = new ColorDialog()) {
+                if (colorDialog.ShowDialog() == DialogResult.OK) {
+                    this.BackColor = colorDialog.Color;
 
+
+                }
+            }
+        }
     }
+    
 }
