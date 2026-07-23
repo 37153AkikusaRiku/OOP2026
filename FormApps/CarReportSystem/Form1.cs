@@ -214,6 +214,25 @@ namespace CarReportSystem {
             dgvRecords.Refresh();
         }
 
+        private void dgvRecords_SelectionChanged(object sender,EventArgs e) {
+            if ((dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport)
+                || (!dgvRecords.CurrentRow.Selected)) return;
+
+            dtpDate.Value = carReport.Date;
+            cbAuthor.Text = carReport.Author;
+
+            SetRadoButtonMaker((MakerGroup)dgvRecords.CurrentRow.Cells["meker"].Value);
+
+            cbCarName.Text = carReport.CarName;
+            tbReport.Text = carReport.Report;
+            pbPicture.Image = carReport.Picture;
+
+
+        }
+
+
+
+
         private void êFê›íËToolStripMenuItem_Click(object sender, EventArgs e) {
             using (ColorDialog colorDialog = new ColorDialog()) {
                 if (colorDialog.ShowDialog() == DialogResult.OK) {
