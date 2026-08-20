@@ -1,12 +1,12 @@
 using System.ComponentModel;
-using System.Diagnostics.Metrics;
 using System.Xml;
 using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
+    
     public partial class Form1 : Form {
-
+        Settings settings = new Settings();
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
@@ -14,6 +14,25 @@ namespace CarReportSystem {
             InitializeComponent();
             dgvRecords.DataSource = listCarReports;
         }
+
+        private void Form1_Load(object sender,EventArgs e) {
+            if (File.Exists("setting.xml")) {
+                try { 
+                  using (var reader = XmlReader.Create("setting.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var settings = serializer.Deserialize(reader) as Settings;
+                        BackColor = Color.FromArgb(settings.MainFormBackColor);
+                    }
+                }
+
+                catch (Exception ex) {
+                    tsslb.Text = "設定ファイル読みエラー";
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+
         //追加ボタンイベントハンドラ
         private void btAddRecord_Click(object sender, EventArgs e) {
 
@@ -236,7 +255,7 @@ namespace CarReportSystem {
                 if (colorDialog.ShowDialog() == DialogResult.OK) {
                     this.BackColor = colorDialog.Color;
 
-                    settings.MainFormBackColor = cdColor.Color.ToArgb();
+                    settings.MainFormBackColor = .Color.ToArgb();
 
                 }
             }
@@ -246,7 +265,7 @@ namespace CarReportSystem {
         private void Form1_FormClosed(object sender,FormClosedEventArgs e) {
             
             using(var writer = XmlWriter.Create("setting.xml")) {
-                var serializer = new XmlSerializer(setting.GetType());
+                var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer, settings);
             }
         }
