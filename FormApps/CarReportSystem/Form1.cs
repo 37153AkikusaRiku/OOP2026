@@ -1,5 +1,7 @@
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
+using System.Xml;
+using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
@@ -234,6 +236,7 @@ namespace CarReportSystem {
                 if (colorDialog.ShowDialog() == DialogResult.OK) {
                     this.BackColor = colorDialog.Color;
 
+                    settings.MainFormBackColor = cdColor.Color.ToArgb();
 
                 }
             }
@@ -241,7 +244,11 @@ namespace CarReportSystem {
 
         //ÉtÉHÅ[ÉÄÇ™ï¬Ç∂ÇÁÇÍÇΩÇÁî≠ìÆÇ∑ÇÈ
         private void Form1_FormClosed(object sender,FormClosedEventArgs e) {
-            //i
+            
+            using(var writer = XmlWriter.Create("setting.xml")) {
+                var serializer = new XmlSerializer(setting.GetType());
+                serializer.Serialize(writer, settings);
+            }
         }
 
 
