@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
-    
+
     public partial class Form1 : Form {
         Settings settings = new Settings();
         //カーレポート管理用リスト
@@ -15,10 +15,10 @@ namespace CarReportSystem {
             dgvRecords.DataSource = listCarReports;
         }
 
-        private void Form1_Load(object sender,EventArgs e) {
+        private void Form1_Load(object sender, EventArgs e) {
             if (File.Exists("setting.xml")) {
-                try { 
-                  using (var reader = XmlReader.Create("setting.xml")) {
+                try {
+                    using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
                         var settings = serializer.Deserialize(reader) as Settings;
                         BackColor = Color.FromArgb(settings.MainFormBackColor);
@@ -227,11 +227,11 @@ namespace CarReportSystem {
             //listCarReports[dgvRecords.CurrentRow.Index].Dat //e = dtpDate.Value;この形でもできる
 
             SetCbAuthor(cbAuthor.Text.Trim());
-            SetCbcarname (cbAuthor.Text.Trim());
+            SetCbcarname(cbAuthor.Text.Trim());
             dgvRecords.Refresh();
         }
 
-        private void dgvRecords_SelectionChanged(object sender,EventArgs e) {
+        private void dgvRecords_SelectionChanged(object sender, EventArgs e) {
             if ((dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport)
                 || (!dgvRecords.CurrentRow.Selected)) return;
 
@@ -255,24 +255,43 @@ namespace CarReportSystem {
                 if (colorDialog.ShowDialog() == DialogResult.OK) {
                     this.BackColor = colorDialog.Color;
 
-                    settings.MainFormBackColor = .Color.ToArgb();
+                    settings.MainFormBackColor = cdColor.Color.ToArgb();
 
                 }
             }
         }
 
         //フォームが閉じられたら発動する
-        private void Form1_FormClosed(object sender,FormClosedEventArgs e) {
-            
-            using(var writer = XmlWriter.Create("setting.xml")) {
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+
+            using (var writer = XmlWriter.Create("setting.xml")) {
                 var serializer = new XmlSerializer(settings.GetType());
                 serializer.Serialize(writer, settings);
             }
         }
 
+        private void sfdReportFileSave_FileOk(object sender, CancelEventArgs e) {
+            if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
+                try {
 
+                }
+                catch(Exception ex) {
+                    tsslb.Text = "ファイル書き出しエラー";
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+
+
+
+
+        }
+
+        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
+            sfdReportFileSave();
+        }
     }
-    
+
 }
 
 
