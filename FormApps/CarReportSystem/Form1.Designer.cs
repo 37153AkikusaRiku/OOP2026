@@ -410,6 +410,7 @@
             終了ToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.F4;
             終了ToolStripMenuItem.Size = new Size(180, 22);
             終了ToolStripMenuItem.Text = "終了(&X)";
+            終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click;
             // 
             // ヘルプHToolStripMenuItem
             // 

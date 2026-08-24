@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
@@ -275,7 +276,7 @@ namespace CarReportSystem {
                 try {
 
                 }
-                catch(Exception ex) {
+                catch (Exception ex) {
                     tsslb.Text = "ファイル書き出しエラー";
                     MessageBox.Show(ex.Message);
                 }
@@ -288,12 +289,43 @@ namespace CarReportSystem {
         }
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
-            sfdReportFileSave();
+            reportSaveFile();
+        }
+
+        private void reportSaveFile() {
+
+            if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
+
+                try {
+
+                    //バイナリ形式でシリアル化
+
+#pragma warning disable SYSLIB0011
+
+                    var bf = new BinaryFormatter();
+
+#pragma warning restore SYSLIB0011
+
+
+                }
+
+                catch (Exception ex) {
+
+                    tsslb.Text = "ファイル書き出しエラー";
+
+                    MessageBox.Show(ex.Message);
+
+                }
+
+            }
+
+        }
+
+        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
         }
     }
-
 }
-
 
 
 
