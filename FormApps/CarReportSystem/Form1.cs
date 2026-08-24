@@ -341,15 +341,25 @@ namespace CarReportSystem {
 #pragma warning disable SYSLIB0011
                     var bf = new BinaryFormatter();
 #pragma warning restore SYSLIB0011
-                    using (FileStream fs = File.Open(ofdReportFileOpen.FileName, FileMode.Open,FileAccess.Read)) {
+                    using (FileStream fs = File.Open(ofdReportFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
 
                         listCarReports = (BindingList<CarReport>)bf.Deserialize(fs);
                         dgvRecords.DataSource = listCarReports;
                     }
+                    //コンボボックスの履歴をすべて消す
+                    cbAuthor.Items.Clear();
+                    cbCarName.Items.Clear();
 
 
-
+                    //コンボボックスの履歴を再登録
+                    foreach (var report in listCarReports) {
+                        SetCbAuthor(report.Author);
+                        SetCbcarname(report.CarName);
+                    }
                 }
+
+
+
                 catch (Exception ex) {
                     tsslb.Text = "ファイル読み込みエラー";
                     MessageBox.Show(ex.Message);
