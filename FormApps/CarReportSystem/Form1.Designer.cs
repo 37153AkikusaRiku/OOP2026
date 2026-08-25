@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace CarReportSystem {
+﻿namespace CarReportSystem {
     partial class Form1 {
         /// <summary>
         ///  Required designer variable.
@@ -61,15 +59,15 @@ namespace CarReportSystem {
             終了ToolStripMenuItem = new ToolStripMenuItem();
             ヘルプHToolStripMenuItem = new ToolStripMenuItem();
             このアプリについてToolStripMenuItem = new ToolStripMenuItem();
+            ofdPicFileOpen = new OpenFileDialog();
+            tsslbMessage = new ToolStripStatusLabel();
             statusStrip1 = new StatusStrip();
-            tsslb = new ToolStripStatusLabel();
-            openFileDialog1 = new OpenFileDialog();
-            sfdReportFileOpen = new SaveFileDialog();
-            ofdReportFileOpen = new OpenFileDialog();
             cdColor = new ColorDialog();
+            sfdReportFileSave = new SaveFileDialog();
+            ofdReportFileOpen = new OpenFileDialog();
             groupBox1.SuspendLayout();
-            ((ISupportInitialize)dgvRecords).BeginInit();
-            ((ISupportInitialize)pbPicture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRecords).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -134,7 +132,6 @@ namespace CarReportSystem {
             rbOther.Name = "rbOther";
             rbOther.Size = new Size(65, 24);
             rbOther.TabIndex = 0;
-            rbOther.TabStop = true;
             rbOther.Text = "その他";
             rbOther.UseVisualStyleBackColor = true;
             // 
@@ -146,7 +143,6 @@ namespace CarReportSystem {
             rbImport.Name = "rbImport";
             rbImport.Size = new Size(72, 24);
             rbImport.TabIndex = 0;
-            rbImport.TabStop = true;
             rbImport.Text = "輸入車";
             rbImport.UseVisualStyleBackColor = true;
             // 
@@ -158,7 +154,6 @@ namespace CarReportSystem {
             rbSubaru.Name = "rbSubaru";
             rbSubaru.Size = new Size(62, 24);
             rbSubaru.TabIndex = 0;
-            rbSubaru.TabStop = true;
             rbSubaru.Text = "スバル";
             rbSubaru.UseVisualStyleBackColor = true;
             // 
@@ -170,7 +165,6 @@ namespace CarReportSystem {
             rbHonda.Name = "rbHonda";
             rbHonda.Size = new Size(62, 24);
             rbHonda.TabIndex = 0;
-            rbHonda.TabStop = true;
             rbHonda.Text = "ホンダ";
             rbHonda.UseVisualStyleBackColor = true;
             // 
@@ -182,7 +176,6 @@ namespace CarReportSystem {
             rbNissan.Name = "rbNissan";
             rbNissan.Size = new Size(57, 24);
             rbNissan.TabIndex = 0;
-            rbNissan.TabStop = true;
             rbNissan.Text = "日産";
             rbNissan.UseVisualStyleBackColor = true;
             // 
@@ -190,11 +183,10 @@ namespace CarReportSystem {
             // 
             rbToyota.AutoSize = true;
             rbToyota.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            rbToyota.Location = new Point(6, 16);
+            rbToyota.Location = new Point(6, 18);
             rbToyota.Name = "rbToyota";
             rbToyota.Size = new Size(62, 25);
             rbToyota.TabIndex = 0;
-            rbToyota.TabStop = true;
             rbToyota.Text = "トヨタ";
             rbToyota.UseVisualStyleBackColor = true;
             // 
@@ -241,11 +233,14 @@ namespace CarReportSystem {
             dgvRecords.AllowUserToAddRows = false;
             dgvRecords.AllowUserToDeleteRows = false;
             dgvRecords.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRecords.Location = new Point(125, 431);
+            dgvRecords.Location = new Point(123, 431);
+            dgvRecords.MultiSelect = false;
             dgvRecords.Name = "dgvRecords";
+            dgvRecords.ReadOnly = true;
+            dgvRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRecords.Size = new Size(719, 292);
             dgvRecords.TabIndex = 4;
-            dgvRecords.CellContentClick += dgvRecords_CellContentClick;
+            dgvRecords.SelectionChanged += dgvRecords_SelectionChanged;
             // 
             // tbReport
             // 
@@ -292,7 +287,7 @@ namespace CarReportSystem {
             // 
             btOpenPicture.FlatStyle = FlatStyle.Flat;
             btOpenPicture.Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            btOpenPicture.Location = new Point(623, 42);
+            btOpenPicture.Location = new Point(623, 43);
             btOpenPicture.Name = "btOpenPicture";
             btOpenPicture.Size = new Size(116, 38);
             btOpenPicture.TabIndex = 6;
@@ -357,6 +352,7 @@ namespace CarReportSystem {
             pbPicture.Location = new Point(538, 86);
             pbPicture.Name = "pbPicture";
             pbPicture.Size = new Size(298, 253);
+            pbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
             pbPicture.TabIndex = 9;
             pbPicture.TabStop = false;
             // 
@@ -379,38 +375,39 @@ namespace CarReportSystem {
             // 開くToolStripMenuItem
             // 
             開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            開くToolStripMenuItem.Size = new Size(155, 22);
+            開くToolStripMenuItem.Size = new Size(180, 22);
             開くToolStripMenuItem.Text = "開く...";
+            開くToolStripMenuItem.Click += 開くToolStripMenuItem_Click;
             // 
             // 保存ToolStripMenuItem
             // 
             保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            保存ToolStripMenuItem.Size = new Size(155, 22);
+            保存ToolStripMenuItem.Size = new Size(180, 22);
             保存ToolStripMenuItem.Text = "保存...";
             保存ToolStripMenuItem.Click += 保存ToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(152, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // 色設定ToolStripMenuItem
             // 
             色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
-            色設定ToolStripMenuItem.Size = new Size(155, 22);
+            色設定ToolStripMenuItem.Size = new Size(180, 22);
             色設定ToolStripMenuItem.Text = "色設定...";
             色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(152, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
             終了ToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.F4;
-            終了ToolStripMenuItem.Size = new Size(155, 22);
+            終了ToolStripMenuItem.Size = new Size(180, 22);
             終了ToolStripMenuItem.Text = "終了(&X)";
             終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click;
             // 
@@ -427,40 +424,34 @@ namespace CarReportSystem {
             このアプリについてToolStripMenuItem.Size = new Size(164, 22);
             このアプリについてToolStripMenuItem.Text = "このアプリについて...";
             // 
+            // ofdPicFileOpen
+            // 
+            ofdPicFileOpen.FileName = "openFileDialog1";
+            // 
+            // tsslbMessage
+            // 
+            tsslbMessage.Name = "tsslbMessage";
+            tsslbMessage.Size = new Size(0, 17);
+            // 
             // statusStrip1
             // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { tsslb });
-            statusStrip1.Location = new Point(0, 760);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { tsslbMessage });
+            statusStrip1.Location = new Point(0, 733);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(856, 22);
+            statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 11;
             statusStrip1.Text = "statusStrip1";
             // 
-            // tsslb
-            // 
-            tsslb.Name = "tsslb";
-            tsslb.Size = new Size(118, 17);
-            tsslb.Text = "toolStripStatusLabel1";
-            // 
-            // openFileDialog1
-            // 
-            openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // sfdReportFileOpen
-            // 
-            sfdReportFileOpen.FileOk += sfdReportFileSave_FileOk;
-            // 
             // ofdReportFileOpen
             // 
-            ofdReportFileOpen.FileName = "openFileDialog2";
-            ofdReportFileOpen.FileOk += ofdReportFileSave_FileOk;
+            ofdReportFileOpen.FileName = "openFileDialog1";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.InactiveCaption;
-            ClientSize = new Size(856, 782);
+            ClientSize = new Size(856, 755);
             Controls.Add(statusStrip1);
             Controls.Add(pbPicture);
             Controls.Add(btDeleteRecord);
@@ -485,22 +476,21 @@ namespace CarReportSystem {
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "Form1";
             Text = "試乗レポート管理システム";
+            FormClosed += Form1_FormClosed;
+            Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((ISupportInitialize)dgvRecords).EndInit();
-            ((ISupportInitialize)pbPicture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRecords).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbPicture).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
-        }
-
-        public void ofdReportFileSave_FileOk(object sender, CancelEventArgs e) {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -541,11 +531,11 @@ namespace CarReportSystem {
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem ヘルプHToolStripMenuItem;
         private ToolStripMenuItem このアプリについてToolStripMenuItem;
+        private OpenFileDialog ofdPicFileOpen;
+        private ToolStripStatusLabel tsslbMessage;
         private StatusStrip statusStrip1;
-        private ToolStripStatusLabel tsslb;
-        private OpenFileDialog openFileDialog1;
-        private SaveFileDialog sfdReportFileOpen;
-        private OpenFileDialog ofdReportFileOpen;
         private ColorDialog cdColor;
+        private SaveFileDialog sfdReportFileSave;
+        private OpenFileDialog ofdReportFileOpen;
     }
 }
