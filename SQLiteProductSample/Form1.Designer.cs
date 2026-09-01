@@ -141,6 +141,7 @@ partial class Form1
         dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         dgvProducts.Size = new Size(648, 287);
         dgvProducts.TabIndex = 0;
+        dgvProducts.CellContentClick += dgvProducts_CellContentClick;
         dgvProducts.SelectionChanged += dgvProducts_SelectionChanged;
         // 
         // statusStrip1

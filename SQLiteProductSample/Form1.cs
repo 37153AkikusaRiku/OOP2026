@@ -18,25 +18,102 @@ public partial class Form1 : Form {
 
         tsslMessage.Text = $"DB: {Database.FilePath}";
     }
-
+    //入力値が不正なら処理を終了
     private void btAdd_Click(object sender, EventArgs e) {
+        if (!TryGetInput(out string name, out int price))
+            return;
+        try {
+            int newId = _repository.Add(name, price);
+            ReloadProducts();
+            ClearInput();
+            tsslMessage.Text = $"商品を追加しました。(ID: {newId})";
+        }
+        catch (Exception ex) {
+            ShowError("商品の追加に失敗しました", ex);
+        }
+
+
 
     }
 
     private void btUpdate_Click(object sender, EventArgs e) {
 
+
+        if (dgvProducts.CurrentRow?.DataBoundItem is not Product selectedProduct) {
+            tsslMessage.Text = "修正する商品を選択してください。";
+            return;
+        }
+
+        if (!TryGetInput(out string name, out int price)) {
+            return;
+        }
+
+        try {
+            // リポジトリのUpdateを呼び出す
+            selectedProduct.Name = name;
+            selectedProduct.Price = price;
+            _repository.Update(selectedProduct);
+
+            ReloadProducts();
+            ClearInput();
+            tsslMessage.Text = $"商品情報を修正しました。(ID: {selectedProduct.Id})";
+        }
+        catch (Exception ex) {
+            ShowError("商品の修正に失敗しました", ex);
+        }
+
+
     }
 
     private void btDelete_Click(object sender, EventArgs e) {
+
+
+        if (dgvProducts.CurrentRow?.DataBoundItem is not Product selectedProduct) {
+            tsslMessage.Text = "削除する商品を選択してください。";
+            return;
+        }
+
+        var result = MessageBox.Show(
+            $"「{selectedProduct.Name}」を削除してもよろしいですか？",
+            "削除確認",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning);
+
+        if (result != DialogResult.Yes) {
+            return;
+        }
+
+        try {
+            // リポジトリのDeleteを呼び出す
+            _repository.Delete(selectedProduct.Id);
+            ReloadProducts();
+            ClearInput();
+            tsslMessage.Text = $"商品を削除しました。(ID: {selectedProduct.Id})";
+        }
+        catch (Exception ex) {
+            ShowError("商品の削除に失敗しました", ex);
+        }
+
 
     }
 
     private void btClear_Click(object sender, EventArgs e) {
 
+
+        ClearInput();
+        dgvProducts.ClearSelection();
+        tsslMessage.Text = "入力をクリアしました。";
+
+
     }
 
     private void dgvProducts_SelectionChanged(object sender, EventArgs e) {
+        if (dgvProducts.CurrentRow?.DataBoundItem is not Product product) 
+            return;
 
+        tbName.Text = product.Name;
+        tbPrice.Text = product.Price.ToString();
+        tsslMessage.Text = $"商品を選択中 (ID: {product.Id})";
     }
 
     private void ReloadProducts() {
@@ -89,6 +166,10 @@ public partial class Form1 : Form {
     }
 
     private void tbName_TextChanged(object sender, EventArgs e) {
+
+    }
+
+    private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e) {
 
     }
 }
