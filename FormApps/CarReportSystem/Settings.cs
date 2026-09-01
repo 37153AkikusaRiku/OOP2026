@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public sealed class Settings {
@@ -27,6 +28,8 @@ namespace CarReportSystem {
 
             using var writer = XmlWriter.Create(FileName);
             var serializer = new XmlSerializer(typeof(SettingsData));
+
+
             serializer.Serialize(writer, data);
 
 

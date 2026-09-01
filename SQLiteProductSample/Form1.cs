@@ -10,6 +10,13 @@ public partial class Form1 : Form {
 
     public Form1() {
         InitializeComponent();
+
+        dgvProducts.AutoGenerateColumns = true;
+        dgvProducts.DataSource = _products;
+
+        ReloadProducts();
+
+        tsslMessage.Text = $"DB: {Database.FilePath}";
     }
 
     private void btAdd_Click(object sender, EventArgs e) {
@@ -33,7 +40,13 @@ public partial class Form1 : Form {
     }
 
     private void ReloadProducts() {
+        _products.Clear();
 
+        foreach (var product in _repository.GetAll()) {
+            _products.Add(product);
+        }
+
+        dgvProducts.ClearSelection();
     }
 
     private bool TryGetInput(out string name, out int price) {
@@ -72,6 +85,10 @@ public partial class Form1 : Form {
     }
 
     private void Form1_Load(object sender, EventArgs e) {
+
+    }
+
+    private void tbName_TextChanged(object sender, EventArgs e) {
 
     }
 }

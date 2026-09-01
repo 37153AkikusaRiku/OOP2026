@@ -76,6 +76,7 @@ partial class Form1
         tbName.Name = "tbName";
         tbName.Size = new Size(236, 23);
         tbName.TabIndex = 7;
+        tbName.TextChanged += tbName_TextChanged;
         // 
         // tbPrice
         // 

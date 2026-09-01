@@ -31,7 +31,7 @@ namespace CarReportSystem {
                         var serializer = new XmlSerializer(typeof(Settings));
 
                         if (serializer.Deserialize(reader) is Settings loadedSettings) {
-                            settings = loadedSettings;
+                           var settings = loadedSettings;
                             //îwåiêF
                             BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
                         }
