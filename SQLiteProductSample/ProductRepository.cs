@@ -80,6 +80,7 @@ public class ProductRepository
             throw new InvalidOperationException("“o˜^‚µ‚½¤•i‚ÌID‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
             return Convert.ToInt32((long)result);
         
+
         }
 
     public  void Update(Product product) {
