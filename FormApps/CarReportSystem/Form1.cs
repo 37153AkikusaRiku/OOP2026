@@ -7,6 +7,13 @@ using static CarReportSystem.CarReport;
 namespace CarReportSystem {
     public partial class Form1 : Form {
 
+
+        
+
+
+
+
+
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
@@ -16,6 +23,10 @@ namespace CarReportSystem {
         public Form1() {
             InitializeComponent();
             dgvRecords.DataSource = listCarReports;
+            Settings.Instance.Load();
+
+            // 2. 読み込んだ色を背景色に適用する
+            this.BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
         }
 
 
@@ -225,8 +236,12 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if (cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
-                //変更された色の情報を保存
+                // 変更された色の情報を保存
                 Settings.Instance.MainFormBackColor = cdColor.Color.ToArgb();
+
+                // 【追加】ファイルへの保存処理を明示的に呼び出す
+                Settings.Instance.Save();
+
             }
         }
 
