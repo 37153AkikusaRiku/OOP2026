@@ -6,7 +6,7 @@ using Microsoft.Data.Sqlite; // ← エラーが出る場合はNuGetでインストールしてくだ
 public static class Database {
     // DBファイルの保存場所
     private static readonly string DatabasePath =
-        Path.Combine(AppContext.BaseDirectory, "carProducts.db");
+        Path.Combine(AppContext.BaseDirectory, "carrepot.db");
 
     // SQLiteへ接続するための接続文字列
     private static readonly string ConnectionString =
@@ -33,9 +33,15 @@ public static class Database {
         command.CommandText =
             """
             CREATE TABLE IF NOT EXISTS Products(
-                Id      INTEGER PRIMARY KEY AUTOINCREMENT,
-                Name    TEXT NOT NULL,
-                Price   INTEGER NOT NULL CHECK (Price >= 0)
+                CREATE TABLE IF NOT EXISTS CarReports (
+                Id       INTEGER PRIMARY KEY AUTOINCREMENT,
+                Date     TEXT    NOT NULL,
+                Author   TEXT    NOT NULL,
+                Maker    INTEGER NOT NULL,
+                CarName  TEXT    NOT NULL,
+                Report   TEXT    NOT NULL,
+                Picture  BLOB
+            );
             );
             """;
 

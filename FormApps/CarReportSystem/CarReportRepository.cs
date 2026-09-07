@@ -1,11 +1,10 @@
 using CarReportSystem;
 using Microsoft.Data.Sqlite;
 using SQLiteProductSample;
-using System.Data;
 
 namespace SQLiteProductSample;
 
-public class CarProductRepository
+public class CarReportRepository
 {
     // <summary>
     // データベースからすべての製品情報を取得
@@ -27,8 +26,8 @@ public class CarProductRepository
         // 【Raw文字列リテラル】""" 
         command.CommandText =
         """
-    SELECT Id, Name, Price
-    FROM Products
+    SELECT Id, Date, Author, Maker, CarName, Report, Picture
+    FROM CarReports
     ORDER BY Id;
     """;
 
@@ -39,25 +38,15 @@ public class CarProductRepository
         while (reader.Read()) {
             // 取得した各列のデータを Product オブジェクトに変換してリストに追加
             products.Add(new CarReport {
-                // 0番目の列（Id）をint型として取得
-                Date = reader.GetDateTime(0),
-
-                // 1番目の列（Name）をstring型として取得
-                Author = reader.GetString(1),
-
-                Maker = reader.(2),
-
-
-                // 2番目の列（Price）をint型として取得
-                Price = reader.GetInt32()
-
-
-
-
-
-
-
+                Id = reader.GetInt32(0),
+                Date = reader.GetDateTime(1),      // データベースの型に合わせて適宜 GetDateTime 等に変更してください
+                Author = reader.GetString(2),
+                Maker = reader.Get(3),
+                CarName = reader.GetString(4),
+                Report = reader.GetString(5),
             });
+
+        }
         } // すべての行の読み込みが終わったらループを抜ける
 
         // 完成した製品データのリストを呼び出し元に返す
@@ -76,8 +65,10 @@ public class CarProductRepository
 
         command.CommandText =
             """
-            INSERT INTO Products(Name,Price)
-            VALUES($name,$price);
+            INSERT INTO CarReports
+            (Date, Author, Maker, CarName, Report, Picture)
+            VALUES
+            ($date, $author, $maker, $carName, $report, $picture);
 
             SELECT last_insert_rowid();
             """;
@@ -95,7 +86,7 @@ public class CarProductRepository
 
         }
 
-    public  void Update(Product product) {
+    public  void Update(CarReport product) {
         using var connection = Database.GetConnection();
         connection.Open();
 
@@ -103,14 +94,17 @@ public class CarProductRepository
         // 指定したIDの「商品名」と「価格」を書き換えるSQL
         command.CommandText =
             """
-            UPDATE Products
-            SET Name = $name, Price = $price
-            WHERE Id = $id;
+            UPDATE CarReports SET Date = $date,
+            Author = $author, Maker = $maker,
+            CarName = $carName, Report = $report,
+            Picture = $picture WHERE Id = $id;";
             """;
 
-        command.Parameters.AddWithValue("$id", product.Id);
-        command.Parameters.AddWithValue("$name", product.Name);
-        command.Parameters.AddWithValue("$price",product.Price);
+        command.Parameters.AddWithValue("$date", CarReport.Date);
+        command.Parameters.AddWithValue("$author", CarReport.Author);
+        command.Parameters.AddWithValue("$maker", CarReport.Maker);
+        command.Parameters.AddWithValue("$carName", CarReport.CarName);
+        command.Parameters.AddWithValue("$report", CarReport.Report);
 
         // データの書き換え（戻り値なし）なので ExecuteNonQuery を使う
         command.ExecuteNonQuery();
@@ -125,11 +119,11 @@ public class CarProductRepository
         // 指定したIDの行を削除するSQL
         command.CommandText =
             """
-            DELETE FROM Products
-            WHERE Id = $id;
+            DELETE FROM CarReports
+            WHERE Id = $id;";
             """;
 
-        command.Parameters.AddWithValue("$id", id);
+        command.Parameters.AddWithValue("$id", idValue);
 
         command.ExecuteNonQuery();
     }
