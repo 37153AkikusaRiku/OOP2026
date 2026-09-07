@@ -1,6 +1,8 @@
 using CarReportSystem;
 using Microsoft.Data.Sqlite;
 using SQLiteProductSample;
+using System.Drawing.Imaging;
+using System.Globalization;
 
 namespace SQLiteProductSample;
 
@@ -12,7 +14,7 @@ public class CarReportRepository
 
     public List<CarReport> GetAll() {
         // 取得したデータを格納するための空のリストを初期化
-        var products = new List<CarReport>();
+        var carReports = new List<CarReport>();
 
         // 【using 宣言】メソッドを抜けるときに、データベース接続（connection）を自動で安全に閉じます（Dispose）
         using var connection = Database.GetConnection();
@@ -37,21 +39,53 @@ public class CarReportRepository
         // 読み込めるデータ（次の行）がある間、ループを繰り返す
         while (reader.Read()) {
             // 取得した各列のデータを Product オブジェクトに変換してリストに追加
-            products.Add(new CarReport {
+            carReports.Add(new CarReport {
                 Id = reader.GetInt32(0),
-                Date = reader.GetDateTime(1),      // データベースの型に合わせて適宜 GetDateTime 等に変更してください
+                Date = DateTime.ParseExact(
+                    reader.GetString(1),
+                    "yyyy-MM-dd", 
+                    CultureInfo.InvariantCulture),
                 Author = reader.GetString(2),
-                Maker = reader.Get(3),
+                Maker = (CarReport.MakerGroup)reader.GetInt32(3),
                 CarName = reader.GetString(4),
                 Report = reader.GetString(5),
+                Picture =
             });
 
         }
-        } // すべての行の読み込みが終わったらループを抜ける
+        return carReports;
+    } // すべての行の読み込みが終わったらループを抜ける
 
-        // 完成した製品データのリストを呼び出し元に返す
-        return products;
+    // 完成した製品データのリストを呼び出し元に返す
+
+
+
+    // ImageをSQLiteへ保存できるbyte[]へ変換する
+    private static byte[]? ImageToBytes(Image? image) {
+        if (image is null) return null;
+
+        using var stream = new MemoryStream();
+        // DBへはPNG形式で保存
+        image.Save(stream, ImageFormat.Png);
+        return stream.ToArray();
     }
+
+    // SQLiteのBLOB（byte[]）をImageへ変換する
+    private static Image BytesToImage(byte[] data) {
+        using var stream = new MemoryStream(data);
+        using var image = Image.FromStream(stream);
+        // MemoryStream破棄後も利用できるようBitmapとしてコピーする。
+        return new Bitmap(image);
+    }
+
+
+
+
+
+
+
+
+
     //商品を一件追加する。Create（INSERT）に相当する。
     //戻り値として自動裁判されたIdを返す。
     public int Add(string name,int price) {
@@ -86,7 +120,7 @@ public class CarReportRepository
 
         }
 
-    public  void Update(CarReport product) {
+    public  void Update(CarReport carReport) {
         using var connection = Database.GetConnection();
         connection.Open();
 
@@ -100,11 +134,11 @@ public class CarReportRepository
             Picture = $picture WHERE Id = $id;";
             """;
 
-        command.Parameters.AddWithValue("$date", CarReport.Date);
-        command.Parameters.AddWithValue("$author", CarReport.Author);
-        command.Parameters.AddWithValue("$maker", CarReport.Maker);
-        command.Parameters.AddWithValue("$carName", CarReport.CarName);
-        command.Parameters.AddWithValue("$report", CarReport.Report);
+        command.Parameters.AddWithValue("$date",carReport.Date);
+        command.Parameters.AddWithValue("$author", carReport.Author);
+        command.Parameters.AddWithValue("$maker", carReport.Maker);
+        command.Parameters.AddWithValue("$carName", carReport.CarName);
+        command.Parameters.AddWithValue("$report", carReport.Report);
 
         // データの書き換え（戻り値なし）なので ExecuteNonQuery を使う
         command.ExecuteNonQuery();
