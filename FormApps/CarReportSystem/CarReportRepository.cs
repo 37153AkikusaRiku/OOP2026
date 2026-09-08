@@ -1,6 +1,7 @@
 using CarReportSystem;
 using Microsoft.Data.Sqlite;
 using SQLiteProductSample;
+using System.Data;
 using System.Drawing.Imaging;
 using System.Globalization;
 
@@ -49,7 +50,9 @@ public class CarReportRepository
                 Maker = (CarReport.MakerGroup)reader.GetInt32(3),
                 CarName = reader.GetString(4),
                 Report = reader.GetString(5),
-                Picture =
+                Picture = reader.IsDBNull(6)
+                             ? null: BytesToImage(reader.GetFieldValue<byte[]>(6))
+
             });
 
         }
@@ -88,7 +91,7 @@ public class CarReportRepository
 
     //商品を一件追加する。Create（INSERT）に相当する。
     //戻り値として自動裁判されたIdを返す。
-    public int Add(string name,int price) {
+    public int Add(CarReport  carReport ) {
 
         using var connection =Database.GetConnection();
 
@@ -107,8 +110,11 @@ public class CarReportRepository
             SELECT last_insert_rowid();
             """;
 
-        command.Parameters.AddWithValue("$name", name);
-        command.Parameters.AddWithValue("$price", price);
+        command.Parameters.AddWithValue("$date", carReport.Date);
+        command.Parameters.AddWithValue("$author", carReport.Author);
+        command.Parameters.AddWithValue("$maker", carReport.Maker);
+        command.Parameters.AddWithValue("$carName", carReport.CarName);
+        command.Parameters.AddWithValue("$report", carReport.Report);
 
         // 一つの値を返すSQLを実行する
         var result = command.ExecuteScalar();
@@ -145,7 +151,7 @@ public class CarReportRepository
     }
 
     // 商品を一件削除する。CRUDの「D（Delete）」に相当する。【新規追加】
-    public void Delete(int id) {
+    public void Delete(CarReport carReport) {
         using var connection = Database.GetConnection();
         connection.Open();
 
@@ -157,7 +163,7 @@ public class CarReportRepository
             WHERE Id = $id;";
             """;
 
-        command.Parameters.AddWithValue("$id", idValue);
+        command.Parameters.AddWithValue("$id", carReport.Id);
 
         command.ExecuteNonQuery();
     }

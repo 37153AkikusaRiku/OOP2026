@@ -33,7 +33,7 @@ public static class Database {
         command.CommandText =
             """
             CREATE TABLE IF NOT EXISTS Products(
-                CREATE TABLE IF NOT EXISTS CarReports (
+               
                 Id       INTEGER PRIMARY KEY AUTOINCREMENT,
                 Date     TEXT    NOT NULL,
                 Author   TEXT    NOT NULL,
@@ -41,7 +41,7 @@ public static class Database {
                 CarName  TEXT    NOT NULL,
                 Report   TEXT    NOT NULL,
                 Picture  BLOB
-            );
+            
             );
             """;
 

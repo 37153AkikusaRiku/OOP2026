@@ -1,3 +1,4 @@
+using SQLiteProductSample;
 using System.ComponentModel;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
@@ -16,6 +17,8 @@ namespace CarReportSystem {
 
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
+        // DB操作を担当するRepository
+        private readonly CarReportRepository CarRepository = new();
 
         ////設定クラスのオブジェクトを生成
         //Settings settings = Settings.Instance;
@@ -32,6 +35,19 @@ namespace CarReportSystem {
 
         private void Form1_Load(object sender, EventArgs e) {
             //設定ファイルを読み込み背景色を設定する（逆シリアル化）
+
+
+
+            listCarReports.Clear();
+
+            foreach (var carReport in CarRepository.GetAll()) {
+                listCarReports.Add(carReport);
+            }
+
+            dgvRecords.ClearSelection();
+
+
+
 
             //ファイルが存在するか？
             if (File.Exists("setting.xml")) {
