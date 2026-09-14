@@ -29,10 +29,10 @@ public class CarReportRepository
         // 【Raw文字列リテラル】""" 
         command.CommandText =
         """
-    SELECT Id, Date, Author, Maker, CarName, Report, Picture
-    FROM CarReports
-    ORDER BY Id;
-    """;
+        SELECT Id, Date, Author, Maker, CarName, Report, Picture
+        FROM CarReports
+        ORDER BY Id;
+        """;
 
         // SQLを実行
         using var reader = command.ExecuteReader();
@@ -110,11 +110,21 @@ public class CarReportRepository
             SELECT last_insert_rowid();
             """;
 
-        command.Parameters.AddWithValue("$date", carReport.Date);
+        command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd",CultureInfo.InvariantCulture));
         command.Parameters.AddWithValue("$author", carReport.Author);
         command.Parameters.AddWithValue("$maker", carReport.Maker);
         command.Parameters.AddWithValue("$carName", carReport.CarName);
         command.Parameters.AddWithValue("$report", carReport.Report);
+        byte[]? pictureDate = ImageToBytes(carReport.Picture);
+
+        var pictureParameter = command.Parameters.Add("picture", SqliteType.Blob);
+
+        if(pictureDate is not null) {
+            pictureParameter.Value = pictureDate;
+        } else {
+            pictureParameter.Value = DBNull.Value;
+        }
+
 
         // 一つの値を返すSQLを実行する
         var result = command.ExecuteScalar();
@@ -134,20 +144,36 @@ public class CarReportRepository
         // 指定したIDの「商品名」と「価格」を書き換えるSQL
         command.CommandText =
             """
-            UPDATE CarReports SET Date = $date,
-            Author = $author, Maker = $maker,
-            CarName = $carName, Report = $report,
-            Picture = $picture WHERE Id = $id;";
+            UPDATE CarReports 
+            SET 
+            Date = $date,
+            Author = $author,
+            Maker = $maker,
+            CarName = $carName, 
+            Report = $report,
+            Picture = $picture 
+            WHERE Id = $id;
             """;
-
+        command.Parameters.AddWithValue("$id", carReport.Id);
         command.Parameters.AddWithValue("$date",carReport.Date);
         command.Parameters.AddWithValue("$author", carReport.Author);
         command.Parameters.AddWithValue("$maker", carReport.Maker);
         command.Parameters.AddWithValue("$carName", carReport.CarName);
         command.Parameters.AddWithValue("$report", carReport.Report);
+        byte[]? pictureDate = ImageToBytes(carReport.Picture);
+
+        var pictureParameter = command.Parameters.Add("picture", SqliteType.Blob);
+
+        if (pictureDate is not null) {
+            pictureParameter.Value = pictureDate;
+        } else {
+            pictureParameter.Value = DBNull.Value;
+        }
+
 
         // データの書き換え（戻り値なし）なので ExecuteNonQuery を使う
-        command.ExecuteNonQuery();
+        if (command.ExecuteNonQuery() != 0)
+            throw new InvalidOperationException("修正対象が見つかりませんでした。");
     }
 
     // 商品を一件削除する。CRUDの「D（Delete）」に相当する。【新規追加】
@@ -165,7 +191,8 @@ public class CarReportRepository
 
         command.Parameters.AddWithValue("$id", carReport.Id);
 
-        command.ExecuteNonQuery();
+        //if (command.ExecuteNonQuery() == 0)
+        //    throw new InvalidOperationException("削除対象が見つかりませんでした。");
     }
 }
 
