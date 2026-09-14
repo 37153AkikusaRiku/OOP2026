@@ -179,7 +179,6 @@ namespace CarReportSystem {
             pbPicture.Image = null;
         }
         private void btDeleteRecord_Click(object sender, EventArgs e) {
-            if ((dgvRecords.CurrentRow is null)
                 || (!dgvRecords.CurrentRow.Selected)) return;
 
             //削除したいインデックスを指定してリストから削除
