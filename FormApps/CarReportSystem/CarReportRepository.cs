@@ -155,7 +155,7 @@ public class CarReportRepository
             WHERE Id = $id;
             """;
         command.Parameters.AddWithValue("$id", carReport.Id);
-        command.Parameters.AddWithValue("$date",carReport.Date);
+        command.Parameters.AddWithValue("$date",carReport.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
         command.Parameters.AddWithValue("$author", carReport.Author);
         command.Parameters.AddWithValue("$maker", carReport.Maker);
         command.Parameters.AddWithValue("$carName", carReport.CarName);
@@ -172,7 +172,7 @@ public class CarReportRepository
 
 
         // データの書き換え（戻り値なし）なので ExecuteNonQuery を使う
-        if (command.ExecuteNonQuery() != 0)
+        if (command.ExecuteNonQuery() == 0)
             throw new InvalidOperationException("修正対象が見つかりませんでした。");
     }
 
@@ -186,13 +186,13 @@ public class CarReportRepository
         command.CommandText =
             """
             DELETE FROM CarReports
-            WHERE Id = $id;";
+            WHERE Id = $id;
             """;
 
         command.Parameters.AddWithValue("$id", carReport.Id);
 
-        //if (command.ExecuteNonQuery() == 0)
-        //    throw new InvalidOperationException("削除対象が見つかりませんでした。");
+        if (command.ExecuteNonQuery() == 0)
+            throw new InvalidOperationException("削除対象が見つかりませんでした。");
     }
 }
 

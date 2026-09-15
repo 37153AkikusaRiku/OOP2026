@@ -91,7 +91,6 @@ namespace CarReportSystem {
 				SetCbAuthor(carReport.Author);
 				SetCbCarName(carReport.CarName);
             }
-
             dgvRecords.ClearSelection();
         }
 
@@ -236,33 +235,20 @@ namespace CarReportSystem {
 
 
 		private void btDeleteRecord_Click(object sender, EventArgs e) {
-
-			
-
-			if ((dgvRecords.CurrentRow is null)|| (!dgvRecords.CurrentRow.Selected)) {
-				tsslbMessage.Text = "削除するレポートを選択してください";
-				return;
-			}
-
-			//削除したいインデックスを指定してリストから削除
 			if (dgvRecords.CurrentRow ?.DataBoundItem is not CarReport carReport) {
 				tsslbMessage.Text = "削除するレポートを選択してください";
 				return;
 				}
-			listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
-
-
-
-
-			InputItemsUpdate(); //データグリッドビューを更新したら呼ぶメソッド
-
+			
 			try {
 				// リポジトリのDeleteを呼び出す
 				carReportRepository.Delete(carReport);
 
 				ReloadProducts();
-                InputItemsAllClear();
-				tsslbMessage.Text = $"商品情報を削除しました。(ID: {carReport.Id})";
+
+				InputItemsAllClear();
+
+                tsslbMessage.Text = $"商品情報を削除しました。(ID: {carReport.Id})";
 			}
 			catch (Exception ex) {
 				ShowError("商品の削除に失敗しました", ex);
@@ -318,10 +304,10 @@ namespace CarReportSystem {
 
                 InputItemsAllClear();
 				tsslbMessage.Text = $"商品情報を修正しました。(ID: {carReport.Id})";
-			}
+		}
 			catch (Exception ex) {
-				ShowError("商品の修正に失敗しました", ex);
-			}
+			ShowError("商品の修正に失敗しました", ex);
+		}
 
 
 
