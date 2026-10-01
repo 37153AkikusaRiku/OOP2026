@@ -1,6 +1,9 @@
-﻿@model List<MvcBasicSample.Models.Product>
+﻿@model List<MvcBasicSample.Models.Product>;
+
 @{
-    ViewData["Title"] = "商品一覧"; // タブ用のタイトル
+    ViewData["Title"] = "商品情報";//タブ用タイトル
+    
+    int pricekei = 0;
 }
 
 <h1>商品一覧</h1>
@@ -12,6 +15,9 @@
     <ul>
         @foreach (var product in Model) {
             <li>@product.Name @product.Price 円</li>
+            pricekei += product.Price;
         }
     </ul>
 }
+
+<p>合計金額 @pricekei </p>
