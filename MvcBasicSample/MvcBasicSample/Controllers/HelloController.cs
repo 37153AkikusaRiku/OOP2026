@@ -8,8 +8,8 @@ namespace MvcBasicSample.Controllers {
         public IActionResult Index() {
             var product = new List<Product> {
             new Product{
-                Name = "ハンバーガー",
-                Price = 500
+                Name = "ノート",
+                Price = 250
             },
             new Product {
                 Name = "ポテト",
