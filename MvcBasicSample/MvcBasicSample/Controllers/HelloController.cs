@@ -12,8 +12,8 @@ namespace MvcBasicSample.Controllers {
                 Price = 250
             },
             new Product {
-                Name = "ポテト",
-                Price = 350
+                Name = "ペン",
+                Price = 150
             }};
             return View(product);
         }

@@ -1,7 +1,53 @@
 ﻿@model List<MvcBasicSample.Models.Product>
+
+    @{ 
+ViewData["Title"] = "合計金額"; 
+string productName1 = "ノート"; 
+int price1 = 250; 
+string productName2 = "ペン"; 
+int price2 = 150; 
+int total = price1 + price2; 
+} 
+
+
+<h1>購入内容</h1>
+<p>@productName1：@price1 円</p>
+<p>@productName2：@price2 円</p>
+<p>合計：@total 円</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @{
     ViewData["Title"] = "商品情報"; // タブ用タイトル
     
+
     // 合計金額を計算するための変数を初期化
     int pricekei = 0;
 }
