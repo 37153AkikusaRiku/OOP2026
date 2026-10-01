@@ -1,25 +1,13 @@
 ﻿@model List<MvcBasicSample.Models.Product>
 
 @{
-    ViewData["Title"] = "商品一覧と合計";
-    var products = new[]
-    {
-new { Name = "ノート", Price = 250 },
-new { Name = "ペン", Price = 150 },
-new { Name = "消しゴム", Price = 100 }
-};
-    int total = 0;
-    foreach (var product in products) {
-        total += product.Price;
-    }
+    ViewData["Title"] = "商品情報";
+    string productName = "ノート";
+    int price = 250;
 }
-<h1>商品一覧</h1>
-<ul>
-    @foreach (var product in products) {
-        <li>@product.Name：@product.Price 円</li>
-    }
-</ul>
-<p>合計：@total 円</p>
+<h1>商品情報</h1>
+<p>商品名：@productName</p>
+<p>価格：@price 円</p>
 
 
 
