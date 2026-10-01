@@ -1,20 +1,19 @@
 ﻿@model List<MvcBasicSample.Models.Product>
 
-    @{ 
-ViewData["Title"] = "合計金額"; 
-string productName1 = "ノート"; 
-int price1 = 250; 
-string productName2 = "ペン"; 
-int price2 = 150; 
-int total = price1 + price2; 
+@{ 
+ViewData["Title"] = "送料判定"; 
+int total = 800; 
 } 
-
-
-<h1>購入内容</h1>
-<p>@productName1：@price1 円</p>
-<p>@productName2：@price2 円</p>
-<p>合計：@total 円</p>
-
+<h1>送料判定</h1> 
+<p>合計：@total 円</p> 
+@if (total>= 1000) 
+{ 
+<p>送料無料</p> 
+} 
+else 
+{ 
+<p>送料がかかります</p> 
+}
 
 
 
