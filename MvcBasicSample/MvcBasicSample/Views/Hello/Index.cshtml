@@ -1,17 +1,17 @@
-﻿@model List<MvcBasicSample.Models.Product>;
-
+﻿@model List<MvcBasicSample.Models.Product>
 @{
-    ViewData["Title"] = "挨拶";//タブ用タイトル
-    string name = "田中";
-    int pricekei = 0;
+    ViewData["Title"] = "商品一覧"; // タブ用のタイトル
 }
 
-<h1>商品情報</h1>　　@*画面見出し*@
-<ul>
-    @foreach (var product in Model){
-        <li> @product.Name @product.Price </li>
-        pricekei += product.Price;
-    }
-</ul>
-
-<p>合計金額 @pricekei </p>
+<h1>商品一覧</h1>
+@* 件数が 0 なら説明だけを表示する *@
+@if (Model.Count == 0) {
+    <p>商品はありません</p>
+} else {
+    <p>@Model.Count 件の商品があります</p>
+    <ul>
+        @foreach (var product in Model) {
+            <li>@product.Name @product.Price 円</li>
+        }
+    </ul>
+}
