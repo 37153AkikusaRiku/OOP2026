@@ -3,7 +3,8 @@
 namespace Section01 {
     internal class Program {
         static void Main(string[] args) {
-            var obj = new PasswordPolicy("aaaaa", ("bbbbb"));
+            //var obj = new PasswordPolicy("aaaaa", ("bbbbb"));
+            var obj = new PasswordPolicy();
             //obj.GivenName = "ccccc";
 
             var ms = new MySaple();
@@ -37,7 +38,7 @@ namespace Section01 {
         public ImmutableList<int> MyList { get; private set; }
 
         public MySaple() {
-           var list = new List<int>() { 1, 2, 3, 4, 5 };
+            var list = new List<int>() { 1, 2, 3, 4, 5 };
             MyList = list.ToImmutableList();
         }
     }
@@ -58,7 +59,7 @@ namespace Section01 {
 
         public string Name => FamilyName + " " + GivenName;
 
-        
+
 
 
 
