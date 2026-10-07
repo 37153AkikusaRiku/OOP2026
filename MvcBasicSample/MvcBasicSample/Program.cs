@@ -6,18 +6,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
-
-
-
 // DefaultConnection‚Æ‚¢‚¤–¼‘O‚ÌÚ‘±•¶š—ñ‚ğæ“¾‚·‚é 
 var connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Ú‘±•¶š—ñ‚ª‚ ‚è‚Ü‚¹‚ñ");
 
 // AppDbContext‚ğ¶¬‚·‚é‚Æ‚«‚Ég—p‚·‚éSQL Server‚ÌÚ‘±İ’è‚ğ“o˜^‚·‚é 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
