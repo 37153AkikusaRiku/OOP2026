@@ -110,6 +110,7 @@ public class CarReportRepository
             SELECT last_insert_rowid();
             """;
 
+
         command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd",CultureInfo.InvariantCulture));
         command.Parameters.AddWithValue("$author", carReport.Author);
         command.Parameters.AddWithValue("$maker", carReport.Maker);
