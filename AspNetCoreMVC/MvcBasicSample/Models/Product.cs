@@ -8,5 +8,6 @@ public class Product {
     [Required]  //必須項目
     public string Name { get; set; } = string.Empty;
     public int Price { get; set; } // 円単位の価格
-    public int Stock { get; set; }
+    public int Stock { get; set; }//在庫
+    public string Description { get; set; } = string.Empty;//商品説明
 }
