@@ -10,6 +10,6 @@ public class AppDbContext : DbContext {
     //Categories テーブルをCategory型として問い合わせるためのプロパティ
     public DbSet<Category> Categories => Set<Category>();        // カテゴリ 
 
-
+    //Productsテーブル
     public DbSet<Product> Products => Set<Product>();            // 商品 
 }
