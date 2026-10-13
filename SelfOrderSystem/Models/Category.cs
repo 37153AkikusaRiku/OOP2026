@@ -9,7 +9,7 @@ namespace SelfOrderSystem.Models {
         [StringLength(50)]
         public string Name { get; set; } = string.Empty;//カテゴリー
 
-        public int SrtOrder { get; set; }//表示順
+        public int SortOrder { get; set; }//表示順
         public List<Product> Products { get; set; } = new();//所属商品
 
 
