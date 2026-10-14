@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SelfOrderSystem.Data;
+using SelfOrderSystem.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,23 @@ builder.Services.AddDbContext<AppDbContext>(
         options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
 /////////
+///
+
+builder.Services.AddDistributedMemoryCache();                    // Sessionの保存領域としてアプリのメモリを使う
+
+
+builder.Services.AddSession(options =>                           // Session機能を登録 
+{
+    options.IdleTimeout = TimeSpan.FromHours(2);                     // 2時間操作がなければ期限切れ 
+    options.Cookie.HttpOnly = true;                              // JavaScriptからSession IDを読めないようにする
+    options.Cookie.IsEssential = true;                           // Session ID用Cookieを必須Cookieとして扱う
+});
+
+builder.Services.AddHttpContextAccessor();                       // Controller以外のクラスからHttpContextを取得できるようにする
+builder.Services.AddScoped<CartService>();                       // CartServiceをDIへ登録しControllerで受け取れるようにする
+
+
+
 
 var app = builder.Build();
 
@@ -33,6 +51,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// app.UseRouting(); の後へ追加する 
+app.UseSession();                                                // このリクエストでSessionを使えるようにする
+
+
 
 app.UseAuthorization();
 
