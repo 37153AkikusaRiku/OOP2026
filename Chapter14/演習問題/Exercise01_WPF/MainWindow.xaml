@@ -17,6 +17,23 @@
             <!-- 残りの領域をすべて使う（これで伸縮します） -->
         </Grid.RowDefinitions>
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+        </Grid>
+        
+        
+
         <!-- 0行目（上側）にボタンを配置 -->
         <Button Content="ファイル選択" Click="Button_Click" Grid.Row="0"/>
 
@@ -28,4 +45,3 @@
                  VerticalScrollBarVisibility="Auto"/>
     </Grid>
 </Window>
-de
