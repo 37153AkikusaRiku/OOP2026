@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Exercise02": {
+      "commandName": "Project",
+      "commandLineArgs": "\\\\172.16.42.1",
+      "workingDirectory": "C:\\Users\\infosys\\.templateengine\\packages",
+      "environmentVariables": {
+        "ss": ""
+      },
+      "sqlDebugging": true
+    }
+  }
+}
