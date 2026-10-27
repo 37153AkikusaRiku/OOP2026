@@ -25,4 +25,6 @@ public abstract class ConverterBase {
     //メートルへの変換
     public double ToMeter(double feet) => feet * Ratio;
 
+  
+
 }
