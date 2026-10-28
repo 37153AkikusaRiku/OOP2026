@@ -46,6 +46,6 @@ public class MiluConverter : ConverterBase {
 public class KirometerConverter : ConverterBase {
     public override bool IsMyUnit(string name) =>
        name.ToLower() == "kirometer" || name == UnitName;
-    protected override double Ratio => 0.001;
-    public override string UnitName => "キロメーター";
+    protected override double Ratio => 1000;
+    public override string UnitName => "キロメートル";
 }
