@@ -14,5 +14,6 @@ namespace TextFileProcessorDI {
         public void Execute(string line) => _count++;
 
         public void Teminate() => Console.WriteLine("{0} 行", _count);
+        
     }
 }

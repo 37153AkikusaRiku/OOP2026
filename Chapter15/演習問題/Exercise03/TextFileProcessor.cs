@@ -16,6 +16,8 @@ namespace TextFileProcessorDI {
 
                 if (20>= _service.Teminate()) {
                     Console.WriteLine(line);
+                } else {
+                    return;
                 }
 
             }
