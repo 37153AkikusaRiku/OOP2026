@@ -1,40 +1,139 @@
+/* ==========================================================================
+   1. Base Styles (呪われた・血に染まった全体設定)
+   ========================================================================== */
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    background-color: #050000; /* 完全な闇 */
+    /* 深い闇の奥から血が滲み出ているような不気味な背景 */
+    background-image: radial-gradient(circle at center, #2a0000 0%, #050000 80%);
+    overflow-x: hidden;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    /* 線の細い、冷徹で不安を誘うフォントを指定 */
+    font-family: 'Courier New', 'Georgia', serif;
+    color: #9c9292; /* 煤けた骨のような色 */
+    padding: 20px;
+    text-shadow: 0 0 5px #ff0000; /* 文字の周りにうっすらと赤い血のような光 */
+    animation: siteFlicker 6s infinite; /* サイト全体が不定期に明滅する */
 }
 
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
 
-/* 商品写真を一定の高さで表示 */
+/* ==========================================================================
+   2. Components (異常な執着・叫びを感じるフォーカス)
+   ========================================================================== */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    /* フォーカスすると、まるで後ろに潜む何かの視線が集まったような、ドス黒い赤のバックライト */
+    box-shadow: 0 0 15px 5px #5a0000, inset 0 0 10px #ff0000;
+    border-color: #ff0000;
+    outline: none;
+    /* 選択した瞬間に、画面が激しくブレるような狂気のアニメーション */
+    animation: glitch 0.2s linear 3;
+}
+
+/* ==========================================================================
+   3. Custom Features (遺影・心霊現象のような商品写真)
+   ========================================================================== */
+/* 商品写真を暗黒のモニター、または古い遺影のように */
 .so-product-photo {
     display: block;
     width: 100%;
     height: 190px;
     object-fit: cover;
-    background: #f0eee9;
+    background: #0d0d0d;
+    border: 1px solid #3a0000;
+    /* 写真自体が赤黒く変色し、コントラストが異常に高くなる（監視カメラの映像風） */
+    filter: grayscale(80%) contrast(150%) sepia(50%) hue-rotate(-50deg);
+    box-shadow: inset 0 0 40px #000000;
+    transition: filter 0.5s ease;
 }
-/* 写真の登録がない商品に表示 */
+
+    /* マウスを乗せると、一瞬だけ写真の赤みが強くなる（警告） */
+    .so-product-photo:hover {
+        filter: grayscale(30%) contrast(200%) sepia(100%) hue-rotate(-50deg);
+    }
+
+/* 写真の登録がない商品（心霊現象・警告画面） */
 .so-product-photo--empty {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
-    font-size: 0.95rem;
-} 
+    color: #ff0000; /* 鮮烈な血液の赤 */
+    font-size: 1.2rem;
+    font-weight: 900;
+    font-family: serif;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background-color: #000000;
+    border: 2px double #ff0000;
+    /* 警告灯やノイズのように不吉に明滅する */
+    animation: pulseWarning 1.5s infinite alternate;
+}
+
+/* ==========================================================================
+   4. Animations (ホラー演出用のアニメーション)
+   ========================================================================== */
+/* サイト全体がたまにチカチカと消えかける（古い電球や精神の不安定さ） */
+@keyframes siteFlicker {
+    0%, 100%, 40%, 43%, 80%, 82% {
+        opacity: 1;
+    }
+
+    41%, 42%, 81% {
+        opacity: 0.5;
+        filter: blur(1px);
+    }
+}
+
+/* 壊れたノイズ・ブレの演出 */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-3px, 2px) skewX(5deg);
+    }
+
+    40% {
+        transform: translate(3px, -2px) skewY(-5deg);
+    }
+
+    60% {
+        transform: translate(-2px, -2px);
+    }
+
+    80% {
+        transform: translate(2px, 2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* 警告文字のドクドクとした明滅（心臓の鼓動風） */
+@keyframes pulseWarning {
+    0% {
+        text-shadow: 0 0 2px #ff0000, 0 0 5px #ff0000;
+        box-shadow: inset 0 0 10px #5a0000;
+    }
+
+    100% {
+        text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+        box-shadow: inset 0 0 30px #ff0000;
+        color: #ffffff; /* 頂点で一瞬白く光る */
+    }
+}
