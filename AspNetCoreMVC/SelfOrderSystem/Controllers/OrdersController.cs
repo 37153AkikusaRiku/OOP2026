@@ -38,6 +38,7 @@ public class OrdersController : Controller {
             return View("Checkout", model);
         }
 
+
         var result = await _orderService.PlaceAsync(cartItems, model.TableNumber);     // 注文処理をServiceへ依頼 
 
         if (!result.IsSuccess) {
