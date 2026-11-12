@@ -1,17 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore; // EF Core の非同期検索
+﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore; // EF Core の非同期検索
+using Microsoft.Extensions.Logging;
 using SelfOrderSystem.Data; // AppDbContext
+using SelfOrderSystem.Hubs;
 using SelfOrderSystem.Models; // Product とOrder
-
 namespace SelfOrderSystem.Services;
 
 public class OrderService : IOrderService {
 
-    private readonly AppDbContext _db; // DB 操作に使うフィールド
+    private readonly AppDbContext _db; // DB操作 
+    private readonly IHubContext<StaffOrdersHub> _hubContext; // 通知 
+    private readonly ILogger<OrderService> _logger; // ログ 
+
+    private readonly AppDbContext logger; // DB 操作に使うフィールド
 
     //コンストラクタ
-    public OrderService(AppDbContext db) // DI からDbContext を受け取る
-    {
+    public OrderService(AppDbContext db,IHubContext<StaffOrdersHub> hubContext,
+    ILogger<OrderService> logger) { 
         _db = db; // 受け取ったものを保持
+        _hubContext = hubContext; // DIでHubを受け取る 
+        _logger = logger; // DIでログを受け取る
     }
 
     public　async Task<PlaceOrderResult> PlaceAsync(List<CartItem> cartItems, int tableNumber) {
@@ -76,7 +84,19 @@ public class OrderService : IOrderService {
         await _db.SaveChangesAsync(); // SQL Server の保存完了を待つ
         
         result.PublicId = order.PublicId; // 完了画面で使うID
-        
+
+        try {
+        //店舗画面へ更新の合図を送る
+        await _hubContext.Clients.All.SendAsync("OrdersChanged");
+
+        }
+        catch (Exception　ex) {
+            _logger.LogWarning(ex, "注文一覧への通知に失敗");
+        }
+
+
+
+
         return result; // 成功結果を返す
     }
 }
