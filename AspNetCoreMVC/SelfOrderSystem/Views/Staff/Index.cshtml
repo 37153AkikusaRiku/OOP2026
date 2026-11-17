@@ -153,7 +153,7 @@
 
         // Hubとの接続を作る
         const staffConnection = new signalR.HubConnectionBuilder()
-           .withUrl("/staffOrdersHub")
+           .withUrl("/staffOrderHub")
               .withAutomaticReconnect()
                  .build();
         // 通知を受けたら最新の注文一覧を読み直す
