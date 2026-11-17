@@ -137,3 +137,10 @@ body {
         color: #ffffff; /* 頂点で一瞬白く光る */
     }
 }
+/*PCではカートをスクロールに追走させる*/
+@media (min-width:992px){
+    .so-cart-sidebar{
+        position:sticky;
+        top:90px;
+    }
+}
