@@ -11,11 +11,11 @@
     int servedCount = Model.Count(o => o.Status == OrderStatus.Served);
 }
 
-<link rel="stylesheet" href="/css/staff.css"asp-append-version="true"/>
+<link rel="stylesheet" href="/css/staff.css" asp-append-version="true" />
 
 <div class="staff-page">
 
-@* 画面タイトル *@
+    @* 画面タイトル *@
     <div class="staff-header">
         <div>
             <p class="staff-eyebrow">STAFF DASHBOARD</p>
@@ -25,7 +25,7 @@
         <span class="staff-header-label">ORDER MANAGEMENT</span>
     </div>
 
-@* 注文数の集計 *@
+    @* 注文数の集計 *@
     <div class="staff-summary">
         <div class="staff-summary-box">
             <span>表示件数</span>
@@ -43,19 +43,24 @@
         </div>
     </div>
 
-@if (Model.Count == 0) {
+    @if (Model.Count == 0) {
         <div class="staff-empty">
             <h2>現在、注文はありません</h2>
             <p>新しい注文が入ると、ここに表示されます</p>
         </div>
-} else {
-    @* 注文をカード形式で並べる *@
+    } else {
+        @* 注文をカード形式で並べる *@
         <div class="staff-order-grid">
 
             @foreach (var order in Model) {
                 // 注文全体の合計金額
                 var total = order.Items.Sum(
                 i => i.UnitPrice * i.Quantity);
+
+                // 注文日時を日本時間へ変換
+                var japanTime = TimeZoneInfo.ConvertTime(
+                order.OrderedAtUtc,
+                TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time"));
 
                 <article class="staff-order-card">
 
@@ -73,19 +78,18 @@
                                 </div>
 
                                 <time class="staff-order-time">
-                                    @order.OrderedAtUtc.ToLocalTime()
-                                    .ToString("yyyy/MM/dd HH:mm")
+                                    @japanTime.ToString("yyyy/MM/dd HH:mm")
                                 </time>
                             </div>
                         </div>
 
                         @* 現在の注文状態 *@
                         <span class="staff-status
-                                    @(order.Status == OrderStatus.Served
-                                                              ? "staff-status-served"
-                                                              : order.Status == OrderStatus.Cooking
-                                                                  ? "staff-status-cooking"
-                                                                  : "staff-status-new")">
+                                            @(order.Status == OrderStatus.Served
+                                                                                            ? "staff-status-served"
+                                                                                            : order.Status == OrderStatus.Cooking
+                                                                                                ? "staff-status-cooking"
+                                                                                                : "staff-status-new")">
                     @order.Status.ToJapanese()
                 </span>
             </div>
@@ -144,11 +148,11 @@
             }
 
         </div>
-}
+    }
 </div>
 @section Scripts {
     @* LibMan で追加したSignalRのJavaScript *@ 
-    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+        <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
     <script>
 
         // Hubとの接続を作る
@@ -160,9 +164,14 @@
         staffConnection.on("OrdersChanged", () => {window.location.reload();
         });
 
-        // 再接続後も表示内容を更新する
-        staffConnection.onreconnected(() => window.location.reload());
-        staffConnection.start().catch(error => {console.error("店舗 SignalR 接続エラー", error);
+        // 変更後：再接続したらグループに再参加
+        staffConnection.onreconnected(async () => {
+            await staffConnection.invoke("JoinStaff");
+                window.location.reload();
         });
+        // 変更後：接続成功後にスタッフグループへ参加
+        staffConnection.start().then(() => staffConnection.invoke("JoinStaff"))
+            .catch(error => console.error("店舗 SignalR 接続エラー", error)
+            );
     </script>
 }
