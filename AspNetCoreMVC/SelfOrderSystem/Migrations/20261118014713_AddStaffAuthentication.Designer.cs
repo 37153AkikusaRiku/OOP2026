@@ -12,8 +12,8 @@ using SelfOrderSystem.Data;
 namespace SelfOrderSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261029023700_AddOrders")]
-    partial class AddOrders
+    [Migration("20261118014713_AddStaffAuthentication")]
+    partial class AddStaffAuthentication
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -141,6 +141,34 @@ namespace SelfOrderSystem.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("SelfOrderSystem.Models.StaffUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.ToTable("StaffUsers");
                 });
 
             modelBuilder.Entity("SelfOrderSystem.Models.OrderItem", b =>

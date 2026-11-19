@@ -12,7 +12,6 @@ public class OrderService : IOrderService {
     private readonly IHubContext<StaffOrdersHub> _hubContext; // 通知 
     private readonly ILogger<OrderService> _logger; // ログ 
 
-    private readonly AppDbContext logger; // DB 操作に使うフィールド
 
     //コンストラクタ
     public OrderService(AppDbContext db,IHubContext<StaffOrdersHub> hubContext,

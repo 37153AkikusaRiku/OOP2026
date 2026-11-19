@@ -6,8 +6,14 @@ using SelfOrderSystem.Models; // OrderStatusを使用
 // ファイルの先頭に追加 
 using Microsoft.AspNetCore.SignalR;
 using SelfOrderSystem.Hubs;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SelfOrderSystem.Controllers;
+
+
+[Authorize(Roles = "Staff")]
+
 
 public class StaffController : Controller {
     private readonly AppDbContext _db; 
