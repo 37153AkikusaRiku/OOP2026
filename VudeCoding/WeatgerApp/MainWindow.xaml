@@ -1,0 +1,44 @@
+﻿<Window x:Class="WeatgerApp.MainWindow"
+        xmlns="http://microsoft.com"
+        xmlns:x="http://microsoft.com"
+        Title="天気予報アプリ（東京・最小構成）" Height="500" Width="680"
+        WindowStartupLocation="CenterScreen" Background="#F4F6F9">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 1. タイトルと取得ボタン -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
+            <TextBlock Text="東京の天気予報" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,20,0"/>
+            <Button x:Name="BtnGetWeather" Content="最新の天気を取得" Width="140" Height="32" FontSize="14"
+                    Background="#0078D4" Foreground="White" BorderThickness="0" Click="BtnGetWeather_Click"/>
+        </StackPanel>
+
+        <!-- 2. 現在の天気表示カード -->
+        <Border Grid.Row="1" Background="White" BorderBrush="#DCDCDC" BorderThickness="1" CornerRadius="6" Padding="15" Margin="0,0,0,10">
+            <TextBlock x:Name="TxtCurrentWeather" Text="「最新の天気を取得」ボタンを押してください。"
+                       FontSize="15" FontWeight="Bold" Foreground="#333333" TextWrapping="Wrap" LineHeight="24"/>
+        </Border>
+
+        <!-- 3. エラーメッセージ表示エリア -->
+        <TextBlock x:Name="TxtError" Grid.Row="2" Foreground="#D93025" FontSize="13" FontWeight="SemiBold"
+                   TextWrapping="Wrap" Margin="0,0,0,10"/>
+
+        <!-- 4. 7日間の天気予報（表） -->
+        <DataGrid x:Name="DgWeekly" Grid.Row="3" AutoGenerateColumns="False" IsReadOnly="True"
+                  CanUserAddRows="False" Background="White" BorderBrush="#DCDCDC" BorderThickness="1"
+                  RowHeight="32" FontSize="14" HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="日付" Binding="{Binding Date}" Width="*"/>
+                <DataGridTextColumn Header="天気" Binding="{Binding WeatherDescription}" Width="*"/>
+                <DataGridTextColumn Header="最高気温 (℃)" Binding="{Binding MaxTemp, StringFormat={}{0:F1}}" Width="*"/>
+                <DataGridTextColumn Header="最低気温 (℃)" Binding="{Binding MinTemp, StringFormat={}{0:F1}}" Width="*"/>
+                <DataGridTextColumn Header="降水確率 (%)" Binding="{Binding PrecipitationProb}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

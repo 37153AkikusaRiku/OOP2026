@@ -177,6 +177,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise03", "Chapter15\演
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfOrderSystem", "AspNetCoreMVC\SelfOrderSystem\SelfOrderSystem.csproj", "{21FAEC98-C28A-091F-FE98-54197D2ADBB2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VudeCoding", "VudeCoding", "{B7A529E4-E092-4408-BCCC-52EA7D247E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherApp", "VudeCoding\WeatherApp\WeatherApp.csproj", "{82A5586C-C488-4E90-B14B-003EFC062118}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -383,6 +387,10 @@ Global
 		{21FAEC98-C28A-091F-FE98-54197D2ADBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21FAEC98-C28A-091F-FE98-54197D2ADBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21FAEC98-C28A-091F-FE98-54197D2ADBB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A5586C-C488-4E90-B14B-003EFC062118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A5586C-C488-4E90-B14B-003EFC062118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A5586C-C488-4E90-B14B-003EFC062118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A5586C-C488-4E90-B14B-003EFC062118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -458,6 +466,7 @@ Global
 		{EA4EAD26-5C53-4857-8963-D5DC24460AF5} = {0286799F-ED44-4179-A19D-7D40EDA23ECC}
 		{8E3BC60B-CBB2-4BF2-9AAD-49D8620C3280} = {EA4EAD26-5C53-4857-8963-D5DC24460AF5}
 		{21FAEC98-C28A-091F-FE98-54197D2ADBB2} = {58459DE2-654B-4542-97C7-436AD8E0B7C2}
+		{82A5586C-C488-4E90-B14B-003EFC062118} = {B7A529E4-E092-4408-BCCC-52EA7D247E95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0537FBEE-AF8B-49A0-BEBF-F5279F0498E9}
